@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import {
   Menu, X, Home, PlusCircle, Mic2, Settings, HelpCircle,
-  Sparkles, ChevronDown, Info, Compass, Keyboard,
+  Sparkles, ChevronDown, Info, Compass, Keyboard, BrainCircuit,
   Cpu, ShieldCheck, Zap, Palette, Sun, Moon, Monitor,
   Type, Wand2, RotateCcw, Loader2,
   Key, Eye, EyeOff, Wifi, WifiOff, AlertCircle, CheckCircle,
@@ -366,36 +366,34 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Advanced Dropdown */}
             {advancedMenuOpen && (
               <div className="absolute right-0 top-full mt-3 w-64 glass-thick rounded-2xl p-2 animate-in fade-in slide-in-from-top-2 duration-300 z-50 shadow-2xl border border-white/20">
-                <DropdownItem
-                  icon={<Cpu className="w-4 h-4" />}
-                  label="Agent Pipeline"
-                  description="Configure AI model assignments"
+                {/* Profile Section */}
+                <div
+                  className="flex items-center gap-3 p-3 mb-2 rounded-xl glass-interactive cursor-pointer group"
                   onClick={() => {
-                    setAppearance((prev) => ({
-                      ...prev,
-                      showAdvanced: true,
-                      openSections: { ...prev.openSections, "agent-pipeline": true },
-                    }));
-                    if (!isSidebarOpen) setIsSidebarOpen(true);
+                    navigate("/architect");
                     setAdvancedMenuOpen(false);
                   }}
-                  active={showAdvanced}
-                />
-                <DropdownItem
-                  icon={<ShieldCheck className="w-4 h-4" />}
-                  label="Data & Privacy"
-                  description="Manage local storage & reset"
-                  onClick={() => {
-                    setAppearance((prev) => ({
-                      ...prev,
-                      showAdvanced: true,
-                      openSections: { ...prev.openSections, "data-privacy": true },
-                    }));
-                    if (!isSidebarOpen) setIsSidebarOpen(true);
-                    setAdvancedMenuOpen(false);
-                  }}
-                />
+                >
+                  <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/30 group-hover:border-primary transition-colors">
+                    <img
+                      src="/assets/veera_profile.jpg"
+                      alt="Veera Babu Manyam"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=Veera+Babu&background=0D8ABC&color=fff";
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">Veera Babu Manyam</h4>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
+                      <Cpu className="w-3 h-3" /> System Architect
+                    </span>
+                  </div>
+                </div>
+
                 <div className="h-px bg-border my-1.5" />
+
                 <DropdownItem
                   icon={<Compass className="w-4 h-4" />}
                   label="Guided Tour"
@@ -523,6 +521,14 @@ export const Header: React.FC<HeaderProps> = ({
                   label="About"
                   onClick={() => {
                     navigate("/about");
+                    setMobileMenuOpen(false);
+                  }}
+                />
+                <DropdownItem
+                  icon={<Cpu className="w-4 h-4" />}
+                  label="System Architect"
+                  onClick={() => {
+                    navigate("/architect");
                     setMobileMenuOpen(false);
                   }}
                 />

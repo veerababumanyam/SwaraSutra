@@ -277,7 +277,7 @@
   }
 
   .dark .glass-thick {
-    background: oklch(15% 0.04 260 / 80%);
+    background: oklch(15% 0.04 260 / 95%);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 

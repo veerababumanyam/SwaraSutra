@@ -173,6 +173,7 @@ export const LandingPage = () => {
                     <a href="#" className="text-sm font-semibold text-muted-foreground hover:text-cyan-600">Twitter</a>
                     <a href="#" className="text-sm font-semibold text-muted-foreground hover:text-cyan-600">Discord</a>
                     <a href="#" className="text-sm font-semibold text-muted-foreground hover:text-cyan-600">Documentation</a>
+                    <button onClick={() => navigate("/architect")} className="text-sm font-semibold text-muted-foreground hover:text-cyan-600">System Architecture</button>
                 </div>
                 <p className="text-sm text-muted-foreground">
                     © 2026 swarasutra AI. Built for the future of Indian Cinema.

@@ -165,7 +165,7 @@ export const TutorialOverlay: React.FC = () => {
 
       {/* Tooltip Card */}
       <div
-        className="absolute w-80 bg-card border border-border shadow-2xl rounded-2xl p-6 pointer-events-auto transition-all duration-500 animate-in zoom-in-95 fade-in"
+        className="absolute w-80 glass-thick border border-border shadow-2xl rounded-2xl p-6 pointer-events-auto transition-all duration-500 animate-in zoom-in-95 fade-in"
         style={getTooltipStyles()}
       >
         <div className="flex items-center gap-3 mb-4">

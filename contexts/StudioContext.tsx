@@ -42,56 +42,56 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
 
   const [languageSettings, setLanguageSettings] = useState<LanguageProfile>(() => {
     const defaults = { primary: "Telugu", secondary: "English", tertiary: "Hindi" };
-    return getSafeLocalStorage("swarasutra_languages", defaults);
+    return getSafeLocalStorage("LyricStudio_languages", defaults);
   });
 
   const [generationSettings, setGenerationSettings] = useState<GenerationSettings>(() => {
     const defaults: GenerationSettings = {
-      category: "", ceremony: "", theme: AUTO_OPTION, customTheme: "", mood: AUTO_OPTION,
-      customMood: "", style: AUTO_OPTION, customStyle: "", complexity: AUTO_OPTION,
-      rhymeScheme: AUTO_OPTION, customRhymeScheme: "", singerStyle: AUTO_OPTION,
-      customSingerStyle: "", structure: DEFAULT_SONG_STRUCTURE, customStructure: "",
-      dialect: AUTO_OPTION, customDialect: ""
+        category: "", ceremony: "", theme: AUTO_OPTION, customTheme: "", mood: AUTO_OPTION,
+        customMood: "", style: AUTO_OPTION, customStyle: "", complexity: AUTO_OPTION,
+        rhymeScheme: AUTO_OPTION, customRhymeScheme: "", singerStyle: AUTO_OPTION,
+        customSingerStyle: "", structure: DEFAULT_SONG_STRUCTURE, customStructure: "",
+        dialect: AUTO_OPTION, customDialect: ""
     };
-    return getSafeLocalStorage("swarasutra_gen_settings", defaults);
+    return getSafeLocalStorage("LyricStudio_gen_settings", defaults);
   });
 
   const [savedSongs, setSavedSongs] = useState<SavedSong[]>(() => {
-    const data = getSafeLocalStorage("swarasutra_saved_songs", []);
-    return Array.isArray(data) ? data : [];
+      const data = getSafeLocalStorage("LyricStudio_saved_songs", []);
+      return Array.isArray(data) ? data : [];
   });
 
   const [projects, setProjects] = useState<Project[]>(() => {
-    const data = getSafeLocalStorage("swarasutra_projects", []);
-    return Array.isArray(data) ? data : [];
+      const data = getSafeLocalStorage("LyricStudio_projects", []);
+      return Array.isArray(data) ? data : [];
   });
 
   const [appearance, setAppearance] = useState<AppearanceSettings>(() => {
-    const defaults: AppearanceSettings = {
-      fontSize: 16,
+    const defaults: AppearanceSettings = { 
+      fontSize: 16, 
       sidebarWidth: 340,
-      themeId: "swarasutra-default",
+      themeId: "LyricStudio-default", 
       colorMode: "system",
-      llmModel: MODEL_DEFAULT,
+      llmModel: MODEL_DEFAULT, 
       agentModels: DEFAULT_AGENT_MODELS,
       customThemes: [],
       showAdvanced: false,
       openSections: {}
     };
-    const saved = getSafeLocalStorage("swarasutra_appearance", defaults);
-
+    const saved = getSafeLocalStorage("LyricStudio_appearance", defaults);
+    
     return {
-      ...defaults,
-      ...(typeof saved === 'object' && saved !== null ? saved : {}),
-      customThemes: (saved && Array.isArray(saved.customThemes)) ? saved.customThemes : []
+        ...defaults,
+        ...(typeof saved === 'object' && saved !== null ? saved : {}),
+        customThemes: (saved && Array.isArray(saved.customThemes)) ? saved.customThemes : []
     };
   });
 
-  useEffect(() => { setSafeLocalStorage("swarasutra_languages", languageSettings); }, [languageSettings]);
-  useEffect(() => { setSafeLocalStorage("swarasutra_gen_settings", generationSettings); }, [generationSettings]);
-  useEffect(() => { setSafeLocalStorage("swarasutra_saved_songs", savedSongs); }, [savedSongs]);
-  useEffect(() => { setSafeLocalStorage("swarasutra_projects", projects); }, [projects]);
-  useEffect(() => { setSafeLocalStorage("swarasutra_appearance", appearance); }, [appearance]);
+  useEffect(() => { setSafeLocalStorage("LyricStudio_languages", languageSettings); }, [languageSettings]);
+  useEffect(() => { setSafeLocalStorage("LyricStudio_gen_settings", generationSettings); }, [generationSettings]);
+  useEffect(() => { setSafeLocalStorage("LyricStudio_saved_songs", savedSongs); }, [savedSongs]);
+  useEffect(() => { setSafeLocalStorage("LyricStudio_projects", projects); }, [projects]);
+  useEffect(() => { setSafeLocalStorage("LyricStudio_appearance", appearance); }, [appearance]);
 
   // Handle Light/Dark/System Mode
   useEffect(() => {
@@ -127,52 +127,52 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
   // Apply Theme Colors
   useEffect(() => {
     try {
-      const root = document.documentElement;
-
-      // Find the selected theme
-      const customThemes = Array.isArray(appearance.customThemes) ? appearance.customThemes : [];
-      const theme = [...DEFAULT_THEMES, ...customThemes].find(t => t.id === appearance.themeId) || DEFAULT_THEMES[0];
-
-      if (theme && theme.colors) {
-        // Convert Hex to HSL for Tailwind variable compatibility
-        // Backgrounds
-        root.style.setProperty('--background', hexToHSL(theme.colors.bgMain));
-        root.style.setProperty('--sidebar-background', hexToHSL(theme.colors.bgSidebar));
-        root.style.setProperty('--card', hexToHSL(theme.colors.bgSidebar)); // Cards match sidebar logic often, or can be lighter
-
-        // Texts
-        root.style.setProperty('--foreground', hexToHSL(theme.colors.textMain));
-        root.style.setProperty('--muted-foreground', hexToHSL(theme.colors.textSecondary));
-        root.style.setProperty('--sidebar-foreground', hexToHSL(theme.colors.textMain));
-        root.style.setProperty('--card-foreground', hexToHSL(theme.colors.textMain));
-
-        // Accents & Borders
-        root.style.setProperty('--primary', hexToHSL(theme.colors.accent));
-        root.style.setProperty('--primary-foreground', hexToHSL(theme.colors.accentText));
-        root.style.setProperty('--ring', hexToHSL(theme.colors.accent));
-        root.style.setProperty('--border', hexToHSL(theme.colors.border));
-
-        // Secondary/Muted derived (simplification)
-        root.style.setProperty('--secondary', hexToHSL(theme.colors.bgSidebar));
-        root.style.setProperty('--secondary-foreground', hexToHSL(theme.colors.textMain));
-        root.style.setProperty('--muted', hexToHSL(theme.colors.bgSidebar));
-      } else {
-        // Reset to defaults (Tailwind handles defaults via classes if vars are unset, 
-        // but we must unset properties to avoid stuck values)
-        const props = ['--background', '--sidebar-background', '--card', '--foreground', '--muted-foreground', '--sidebar-foreground', '--card-foreground', '--primary', '--primary-foreground', '--ring', '--border', '--secondary', '--secondary-foreground', '--muted'];
-        props.forEach(p => root.style.removeProperty(p));
-      }
+        const root = document.documentElement;
+        
+        // Find the selected theme
+        const customThemes = Array.isArray(appearance.customThemes) ? appearance.customThemes : [];
+        const theme = [...DEFAULT_THEMES, ...customThemes].find(t => t.id === appearance.themeId) || DEFAULT_THEMES[0];
+        
+        if (theme && theme.colors) {
+            // Convert Hex to HSL for Tailwind variable compatibility
+            // Backgrounds
+            root.style.setProperty('--background', hexToHSL(theme.colors.bgMain));
+            root.style.setProperty('--sidebar-background', hexToHSL(theme.colors.bgSidebar));
+            root.style.setProperty('--card', hexToHSL(theme.colors.bgSidebar)); // Cards match sidebar logic often, or can be lighter
+            
+            // Texts
+            root.style.setProperty('--foreground', hexToHSL(theme.colors.textMain));
+            root.style.setProperty('--muted-foreground', hexToHSL(theme.colors.textSecondary));
+            root.style.setProperty('--sidebar-foreground', hexToHSL(theme.colors.textMain));
+            root.style.setProperty('--card-foreground', hexToHSL(theme.colors.textMain));
+            
+            // Accents & Borders
+            root.style.setProperty('--primary', hexToHSL(theme.colors.accent));
+            root.style.setProperty('--primary-foreground', hexToHSL(theme.colors.accentText));
+            root.style.setProperty('--ring', hexToHSL(theme.colors.accent));
+            root.style.setProperty('--border', hexToHSL(theme.colors.border));
+            
+            // Secondary/Muted derived (simplification)
+            root.style.setProperty('--secondary', hexToHSL(theme.colors.bgSidebar)); 
+            root.style.setProperty('--secondary-foreground', hexToHSL(theme.colors.textMain));
+            root.style.setProperty('--muted', hexToHSL(theme.colors.bgSidebar));
+        } else {
+            // Reset to defaults (Tailwind handles defaults via classes if vars are unset, 
+            // but we must unset properties to avoid stuck values)
+            const props = ['--background', '--sidebar-background', '--card', '--foreground', '--muted-foreground', '--sidebar-foreground', '--card-foreground', '--primary', '--primary-foreground', '--ring', '--border', '--secondary', '--secondary-foreground', '--muted'];
+            props.forEach(p => root.style.removeProperty(p));
+        }
     } catch (e) {
-      console.warn("swarasutra: Theme application error:", e);
+        console.warn("LyricStudio: Theme application error:", e);
     }
   }, [appearance.themeId, appearance.customThemes, appearance.colorMode]);
 
   useEffect(() => {
-    const completed = localStorage.getItem("swarasutra_tutorial_completed");
+    const completed = localStorage.getItem("LyricStudio_tutorial_completed");
     if (!completed) {
       setTutorialActive(true);
     }
-
+    
     const handleResize = () => {
       if (window.innerWidth < 1024) setIsSidebarOpen(false);
     };
@@ -203,8 +203,8 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
     setSavedSongs(prev => [song, ...prev]);
     // If song has project ID, update project song list
     if (song.projectId) {
-      setProjects(prev => prev.map(p =>
-        p.id === song.projectId
+      setProjects(prev => prev.map(p => 
+        p.id === song.projectId 
           ? { ...p, songIds: [...p.songIds, song.id] }
           : p
       ));
@@ -217,7 +217,7 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
 
   const assignSongToProject = useCallback((songId: string, projectId: string) => {
     setSavedSongs(prev => prev.map(s => s.id === songId ? { ...s, projectId } : s));
-    setProjects(prev => prev.map(p =>
+    setProjects(prev => prev.map(p => 
       p.id === projectId && !p.songIds.includes(songId)
         ? { ...p, songIds: [...p.songIds, songId] }
         : p
@@ -246,16 +246,16 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
   const resetSettingsToDefault = useCallback(() => {
     setLanguageSettings({ primary: "Telugu", secondary: "English", tertiary: "Hindi" });
     setGenerationSettings({
-      category: "", ceremony: "", theme: AUTO_OPTION, customTheme: "", mood: AUTO_OPTION,
-      customMood: "", style: AUTO_OPTION, customStyle: "", complexity: AUTO_OPTION,
-      rhymeScheme: AUTO_OPTION, customRhymeScheme: "", singerStyle: AUTO_OPTION,
-      customSingerStyle: "", structure: DEFAULT_SONG_STRUCTURE, customStructure: "",
-      dialect: AUTO_OPTION, customDialect: ""
+        category: "", ceremony: "", theme: AUTO_OPTION, customTheme: "", mood: AUTO_OPTION,
+        customMood: "", style: AUTO_OPTION, customStyle: "", complexity: AUTO_OPTION,
+        rhymeScheme: AUTO_OPTION, customRhymeScheme: "", singerStyle: AUTO_OPTION,
+        customSingerStyle: "", structure: DEFAULT_SONG_STRUCTURE, customStructure: "",
+        dialect: AUTO_OPTION, customDialect: ""
     });
     setAppearance({
       fontSize: 16,
       sidebarWidth: 340,
-      themeId: "swarasutra-default",
+      themeId: "LyricStudio-default",
       colorMode: "system",
       llmModel: MODEL_DEFAULT,
       agentModels: DEFAULT_AGENT_MODELS,
@@ -266,25 +266,25 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
   }, []);
 
   const clearAllData = useCallback(() => {
-    localStorage.removeItem("swarasutra_languages");
-    localStorage.removeItem("swarasutra_gen_settings");
-    localStorage.removeItem("swarasutra_saved_songs");
-    localStorage.removeItem("swarasutra_projects");
-    localStorage.removeItem("swarasutra_appearance");
-    localStorage.removeItem("swarasutra_profiles");
-    localStorage.removeItem("swarasutra_tutorial_completed");
-    localStorage.removeItem("swarasutra_api_key");
-
+    localStorage.removeItem("LyricStudio_languages");
+    localStorage.removeItem("LyricStudio_gen_settings");
+    localStorage.removeItem("LyricStudio_saved_songs");
+    localStorage.removeItem("LyricStudio_projects");
+    localStorage.removeItem("LyricStudio_appearance");
+    localStorage.removeItem("LyricStudio_profiles");
+    localStorage.removeItem("LyricStudio_tutorial_completed");
+    localStorage.removeItem("LyricStudio_api_key");
+    
     // Reset states to defaults
     setLanguageSettings({ primary: "Telugu", secondary: "English", tertiary: "Hindi" });
     setSavedSongs([]);
     setProjects([]);
     setGenerationSettings({
-      category: "", ceremony: "", theme: AUTO_OPTION, customTheme: "", mood: AUTO_OPTION,
-      customMood: "", style: AUTO_OPTION, customStyle: "", complexity: AUTO_OPTION,
-      rhymeScheme: AUTO_OPTION, customRhymeScheme: "", singerStyle: AUTO_OPTION,
-      customSingerStyle: "", structure: DEFAULT_SONG_STRUCTURE, customStructure: "",
-      dialect: AUTO_OPTION, customDialect: ""
+        category: "", ceremony: "", theme: AUTO_OPTION, customTheme: "", mood: AUTO_OPTION,
+        customMood: "", style: AUTO_OPTION, customStyle: "", complexity: AUTO_OPTION,
+        rhymeScheme: AUTO_OPTION, customRhymeScheme: "", singerStyle: AUTO_OPTION,
+        customSingerStyle: "", structure: DEFAULT_SONG_STRUCTURE, customStructure: "",
+        dialect: AUTO_OPTION, customDialect: ""
     });
     // Force reload to ensure clean state and clear sensitive context
     window.location.reload();

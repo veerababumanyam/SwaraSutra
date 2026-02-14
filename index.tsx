@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import Studio from "./components/Studio";
 import { AboutPage } from "./components/AboutPage";
+import { ArchitectProfile } from "./components/ArchitectProfile";
 
 import { StudioProvider } from "./contexts/StudioContext";
 import "./global.css";
@@ -30,6 +31,13 @@ const App = () => {
           <Route path="/about" element={
             <ErrorBoundary scope="Root: About">
               <AboutPage />
+            </ErrorBoundary>
+          } />
+
+          {/* Architect Profile Route */}
+          <Route path="/architect" element={
+            <ErrorBoundary scope="Root: Architect">
+              <ArchitectProfile />
             </ErrorBoundary>
           } />
 
