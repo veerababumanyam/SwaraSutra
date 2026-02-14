@@ -4,7 +4,8 @@ import {
     Users, Briefcase, Award, Globe, Shield,
     Cpu, Activity, Zap, Layers, Network,
     Code2, Database, Terminal, Lock, Workflow,
-    ChevronRight, ExternalLink, Mail, MapPin, Phone
+    ChevronRight, ExternalLink, Mail, MapPin, Phone,
+    BrainCircuit, Cloud
 } from 'lucide-react';
 import { GlassButton } from './ui/GlassButton';
 
@@ -13,6 +14,7 @@ interface ExperienceNode {
     id: string;
     role: string;
     company: string;
+    logo: string;
     period: string;
     location: string;
     description: string[];
@@ -31,13 +33,14 @@ const EXPERIENCE_DATA: ExperienceNode[] = [
         id: 'eon-current',
         role: 'Global Enterprise Architect',
         company: 'E.ON',
+        logo: 'https://logo.clearbit.com/eon.com',
         period: 'Sep 2019 - Present',
         location: 'Essen, Germany',
         description: [
-            'Spearheaded strategic AI agent integration into enterprise architecture.',
-            'Developed comprehensive AI governance frameworks for LLM safety and scalability.',
-            'Architected Proof-of-Concept AI agents for Microsoft Copilot with RAG pipelines.',
-            'Led Zero Trust implementation (Zscaler, Illumio) reducing lateral movement risks.'
+            'Pioneered the strategic integration of Autonomous AI Agents into the enterprise core.',
+            'Architected comprehensive AI Governance Frameworks, ensuring LLM safety and ethical scalability.',
+            'Developed high-impact Proof-of-Concept AI agents for Microsoft Copilot, leveraging advanced RAG pipelines.',
+            'Executed a Zero Trust security paradigm (Zscaler, Illumio), effectively neutralizing lateral movement risks.'
         ],
         tech: ['AI Agents', 'LLMs', 'RAG', 'Azure', 'Zero Trust', 'Zscaler']
     },
@@ -45,12 +48,13 @@ const EXPERIENCE_DATA: ExperienceNode[] = [
         id: 'infosys',
         role: 'Senior Technology Architect',
         company: 'Infosys Ltd',
+        logo: 'https://logo.clearbit.com/infosys.com',
         period: 'Feb 2016 - Aug 2019',
         location: 'Global',
         description: [
-            'Provided technical leadership for Enterprise Architecture orchestration.',
-            'Led technology mergers and carve-outs enabling business acquisitions.',
-            'Optimized LAN/WAN infrastructure resulting in 30% reduced downtime.'
+            'Orchestrated Enterprise Architecture transformation, aligning technology with critical business drivers.',
+            'Directed complex technology mergers and carve-outs, enabling seamless business acquisitions.',
+            'Revolutionized LAN/WAN infrastructure, achieving a 30% reduction in system downtime through optimization.'
         ],
         tech: ['Enterprise Arch', 'Mergers & Acquisitions', 'Network Security']
     },
@@ -58,12 +62,13 @@ const EXPERIENCE_DATA: ExperienceNode[] = [
         id: 'wipro',
         role: 'Solution Architect',
         company: 'Wipro Technologies',
+        logo: 'https://logo.clearbit.com/wipro.com',
         period: 'Jul 2014 - Jan 2016',
         location: 'Global',
         description: [
-            'Established high-performance IT infrastructure solutions framework.',
-            'Designed and implemented UCaaS platform, reducing costs by 25%.',
-            'Led 15-member team for Cisco UCS/HC/VMware migration projects.'
+            'Engineered a robust, high-performance IT infrastructure frame work for global scalability.',
+            'Designed and deployed a cost-saving UCaaS platform, reducing operational expenses by 25%.',
+            'Commended for leading a 15-member elite team in critical Cisco UCS and VMware migration projects.'
         ],
         tech: ['UCaaS', 'Cisco UCS', 'VMware', 'Cloud Migration']
     },
@@ -71,12 +76,13 @@ const EXPERIENCE_DATA: ExperienceNode[] = [
         id: 'cisco',
         role: 'Solution Architect & Support Engineer',
         company: 'Cisco Systems',
+        logo: 'https://logo.clearbit.com/cisco.com',
         period: 'Feb 2011 - Jul 2014',
         location: 'Global',
         description: [
-            'Orchestrated support for complex Cisco Unified Communications Systems.',
-            'Consulted with top 200 clients (Accenture, JPMC, AT&T) on HTTS UC Team.',
-            'Maintained high SLAs and profitability through strategic planning.'
+            'Championed complex support orchestrations for Cisco Unified Communications Systems globally.',
+            'Served as a trusted advisor to top 200 enterprise clients (Accenture, JPMC, AT&T) within the critical HTTS UC Team.',
+            'Consistently exceeded SLA targets and drove profitability through strategic technical planning.'
         ],
         tech: ['Cisco UC', 'VoIP', 'Network Design', 'HTTS']
     }
@@ -84,28 +90,28 @@ const EXPERIENCE_DATA: ExperienceNode[] = [
 
 const SKILL_CLUSTERS: SkillCluster[] = [
     {
-        category: 'Generative AI & Engineering',
+        category: 'Generative AI Engineering',
         icon: BrainCircuit,
         skills: ['AI Agents', 'LLMs', 'Generative AI', 'GenAI Engineering', 'RAG Pipelines', 'AI Semantics', 'Vector Databases']
     },
     {
-        category: 'AI Platforms & Frameworks',
+        category: 'AI Platforms',
         icon: Workflow,
-        skills: ['Microsoft Copilot Studio', 'Agent 365', 'Einstein Studio', 'Databricks Mosaic AI', 'SAP Jules', 'LangChain', 'CrewAI', 'Pedantic AI']
+        skills: ['Microsoft Copilot Studio', 'Agent 365', 'swarasutra', 'Databricks Mosaic AI', 'SAP Jules', 'LangChain', 'CrewAI', 'PydanticAI']
     },
     {
-        category: 'Data Strategy & Governance',
+        category: 'Data & Governance',
         icon: Database,
         skills: ['Data Science', 'Data Strategy', 'Data Governance', 'AI Governance', 'Strategic Planning']
     },
     {
-        category: 'Cloud & Infrastructure',
+        category: 'Cloud Infrastructure',
         icon: Cloud,
         skills: ['Azure (Expert)', 'Hybrid Cloud', 'Zero Trust Security', 'Kubernetes', 'Docker', 'Aviatrix']
     }
 ];
 
-import { BrainCircuit, Cloud } from 'lucide-react'; // Missing imports
+
 
 export const ArchitectProfile = () => {
     const [activeNode, setActiveNode] = useState<string | null>(null);
@@ -129,33 +135,56 @@ export const ArchitectProfile = () => {
 
                 {/* ── HERO: Holographic Identity ── */}
                 <section className="relative flex flex-col md:flex-row items-center gap-10 md:gap-16">
-                    <div className="relative group perspective-1000">
-                        {/* Rotating Rings */}
-                        <div className="absolute inset-[-20px] rounded-full border-2 border-cyan-500/20 border-t-cyan-500/60 animate-[spin_10s_linear_infinite]" />
-                        <div className="absolute inset-[-10px] rounded-full border-2 border-blue-500/20 border-b-blue-500/60 animate-[spin_15s_linear_infinite_reverse]" />
+                    <div className="relative group perspective-1000 mt-10 md:mt-0">
+                        {/* ── Neural Halo Effect ── */}
 
-                        {/* Image Container */}
-                        <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden glass-thick border-4 border-white/20 shadow-[0_0_60px_rgba(6,182,212,0.5)] transition-transform duration-500 group-hover:scale-105">
+                        {/* ── Crystalline Aperture Effect ── */}
+
+                        {/* 1. Focused Spotlight (Behind) */}
+                        <div className="absolute inset-4 bg-cyan-500/40 blur-[50px] rounded-full animate-pulse" />
+
+                        {/* 2. Rotating Lens Ring (The Aperture) */}
+                        <svg className="absolute inset-[-40px] w-[calc(100%+80px)] h-[calc(100%+80px)] animate-[spin_20s_linear_infinite] pointer-events-none opacity-100" viewBox="0 0 200 200">
+                            {/* Outer geometric marks - THICKER */}
+                            <circle cx="100" cy="100" r="98" fill="none" stroke="url(#crystal-gradient)" strokeWidth="1.5" strokeDasharray="4 8" opacity="0.8" />
+                            {/* Inner precision ring - THICKER */}
+                            <circle cx="100" cy="100" r="85" fill="none" stroke="white" strokeWidth="2" strokeDasharray="40 120" opacity="0.5" strokeLinecap="square" />
+                            <defs>
+                                <linearGradient id="crystal-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stopColor="#06b6d4" /> {/* Cyan-500 */}
+                                    <stop offset="100%" stopColor="white" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+
+                        {/* 3. Satellite Orbiter (Active Motion) */}
+                        <div className="absolute inset-[-50px] w-[calc(100%+100px)] h-[calc(100%+100px)] animate-[spin_10s_linear_infinite] pointer-events-none">
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,0.8)]" />
+                        </div>
+
+                        {/* ── Image Container (High Definition) ── */}
+                        <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-white/20 shadow-[0_0_30px_rgba(6,182,212,0.15)] animate-float bg-black/5 ring-1 ring-white/10 z-10">
                             <img
                                 src="/assets/veera_profile.jpg"
                                 alt="Veera Babu Manyam"
-                                className="w-full h-full object-cover transition-all duration-700"
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-110 contrast-110"
                                 onError={(e) => {
-                                    // Fallback if image fails
                                     (e.target as HTMLImageElement).src = 'https://ui-avatars.com/api/?name=Veera+Manyam&background=0D8ABC&color=fff&size=256';
                                 }}
                             />
-                            {/* Scanline Effect */}
-                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/10 to-transparent h-1/4 animate-[scan_3s_linear_infinite] pointer-events-none" />
+                            {/* Sharp Specular Highlight */}
+                            <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-white/10 pointer-events-none" />
+                            {/* Cinematic Shine (Subtle) */}
+                            <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none mix-blend-overlay" />
                         </div>
 
-                        {/* Status Batch */}
-                        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 glass-elevated px-4 py-1.5 rounded-full flex items-center gap-2 border border-cyan-500/30 shadow-lg shadow-cyan-500/20">
+                        {/* ── Status Batch ── */}
+                        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 glass-interactive px-5 py-2 rounded-full flex items-center gap-3 border border-white/10 shadow-xl shadow-cyan-500/10 z-20 backdrop-blur-md">
                             <span className="relative flex h-2.5 w-2.5">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
                             </span>
-                            <span className="text-xs font-bold uppercase tracking-widest text-cyan-600 dark:text-cyan-300">System Active</span>
+                            <span className="text-xs font-bold uppercase tracking-widest text-foreground/90">System Active</span>
                         </div>
                     </div>
 
@@ -229,19 +258,37 @@ export const ArchitectProfile = () => {
                 `} />
 
                                 <div className="glass-thick p-6 md:p-8 rounded-2xl border border-white/5 hover:border-cyan-500/30 transition-all duration-300">
-                                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                                        <div>
-                                            <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-                                                {node.role}
-                                            </h3>
-                                            <div className="flex items-center gap-2 text-muted-foreground font-medium mt-1">
-                                                <Briefcase className="w-4 h-4" />
-                                                {node.company}
-                                            </div>
+                                    <div className="flex flex-col md:flex-row md:items-start gap-4 mb-4">
+                                        {/* Logo Container */}
+                                        <div className="hidden md:flex shrink-0 w-14 h-14 rounded-xl bg-white/5 p-2 glass-bordered items-center justify-center overflow-hidden group-hover:border-cyan-500/30 transition-colors">
+                                            <img
+                                                src={node.logo}
+                                                alt={`${node.company} Logo`}
+                                                className="w-full h-full object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                                                onError={(e) => {
+                                                    e.currentTarget.style.display = 'none';
+                                                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                                                }}
+                                            />
+                                            <Briefcase className="hidden w-6 h-6 text-muted-foreground" />
                                         </div>
-                                        <div className="flex flex-col md:items-end gap-1 text-sm text-muted-foreground/80 font-mono">
-                                            <span>{node.period}</span>
-                                            <span className="flex items-center gap-1"><MapPin className="w-3 h-3" /> {node.location}</span>
+
+                                        <div className="flex-1">
+                                            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
+                                                <div>
+                                                    <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                                                        {node.role}
+                                                    </h3>
+                                                    <div className="flex items-center gap-2 text-muted-foreground font-medium mt-1">
+                                                        <span className="md:hidden"><Briefcase className="w-4 h-4 inline mr-1" /></span>
+                                                        {node.company}
+                                                    </div>
+                                                </div>
+                                                <div className="flex flex-col md:items-end gap-1 text-sm text-muted-foreground/80 font-mono">
+                                                    <span>{node.period}</span>
+                                                    <span className="flex items-center gap-1"><MapPin className="w-3 h-3" /> {node.location}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 

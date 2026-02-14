@@ -93,23 +93,9 @@ if (document.readyState === 'loading') {
 // Unregister any existing service workers to avoid stale cache issues
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then((registrations) => {
-    let unregisterPromises = [];
     for (const registration of registrations) {
       console.log('Force unregistering service worker:', registration);
-      unregisterPromises.push(registration.unregister());
+      registration.unregister();
     }
-
-    Promise.all(unregisterPromises).then(() => {
-      if (navigator.serviceWorker.controller) {
-        console.log('Page is still controlled by a Service Worker. Reloading to clear...');
-        if (!sessionStorage.getItem('sw_cleanup_reload')) {
-          sessionStorage.setItem('sw_cleanup_reload', 'true');
-          window.location.reload();
-        } else {
-          console.warn('Service Worker cleanup reload loop detected. Please manually hard refresh (Cmd+Shift+R).');
-          sessionStorage.removeItem('sw_cleanup_reload');
-        }
-      }
-    });
   });
 }

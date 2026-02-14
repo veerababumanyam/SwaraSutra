@@ -35,7 +35,8 @@ const Studio = () => {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [hasApiKey, setHasApiKey] = useState(true);
+  const [hasApiKey, setHasApiKey] = useState(false); // Default to false initially
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const sendInFlightRef = useRef(false);
   const autoPromptRef = useRef<string | null>(null);
@@ -73,7 +74,9 @@ const Studio = () => {
 
     // Check for API key in env or localStorage
     const savedKey = localStorage.getItem("swarasutra_api_key");
-    setHasApiKey(!!process.env.API_KEY || !!savedKey);
+    const keyExists = !!process.env.API_KEY || !!savedKey;
+    setHasApiKey(keyExists);
+    setShowWelcomeModal(!keyExists); // Show modal if no key
   }, []);
 
   // Save chat session to local storage whenever messages change
@@ -154,6 +157,12 @@ const Studio = () => {
     if (isLoading) return;
     if (sendInFlightRef.current) return;
     sendInFlightRef.current = true;
+
+    // Check for API key before processing
+    if (!hasApiKey) {
+      setShowWelcomeModal(true);
+      return;
+    }
 
     setViewState('CHAT');
 
@@ -309,7 +318,14 @@ const Studio = () => {
         )}
       </div>
       <HelpModal isOpen={isHelpOpen} onClose={() => setIsHelpOpen(false)} />
-      <ApiKeyWelcomeModal isOpen={!hasApiKey} onSuccess={() => setHasApiKey(true)} />
+      <ApiKeyWelcomeModal
+        isOpen={showWelcomeModal}
+        onSuccess={() => {
+          setHasApiKey(true);
+          setShowWelcomeModal(false);
+        }}
+        onSkip={() => setShowWelcomeModal(false)}
+      />
       <RhythmTapper isOpen={isTapperOpen} onClose={() => setIsTapperOpen(false)} onApply={setRhythmContext} />
     </div>
   );

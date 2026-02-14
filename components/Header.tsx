@@ -6,7 +6,7 @@ import {
   Cpu, ShieldCheck, Zap, Palette, Sun, Moon, Monitor,
   Type, Wand2, RotateCcw, Loader2,
   Key, Eye, EyeOff, Wifi, WifiOff, AlertCircle, CheckCircle,
-  XCircle, Save, Trash2, Binary, KeyRound
+  XCircle, Save, Trash2, Binary, KeyRound, ExternalLink
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ViewState, AgentStatus, ColorMode } from "../types";
@@ -758,6 +758,16 @@ export const Header: React.FC<HeaderProps> = ({
                 </div>
               </div>
             </div>
+
+            {/* Get Key Link */}
+            <a
+              href="https://aistudio.google.com/app/apikey"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-500 hover:text-blue-400 text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-blue-500/20"
+            >
+              Get Free Gemini API Key <ExternalLink className="w-3 h-3" />
+            </a>
 
             {/* Action Buttons */}
             <div className="flex gap-2">

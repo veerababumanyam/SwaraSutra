@@ -7,9 +7,10 @@ import { APP_NAME } from "../constants";
 interface ApiKeyWelcomeModalProps {
     isOpen: boolean;
     onSuccess: () => void;
+    onSkip: () => void;
 }
 
-export const ApiKeyWelcomeModal: React.FC<ApiKeyWelcomeModalProps> = ({ isOpen, onSuccess }) => {
+export const ApiKeyWelcomeModal: React.FC<ApiKeyWelcomeModalProps> = ({ isOpen, onSuccess, onSkip }) => {
     const [apiKeyInput, setApiKeyInput] = useState("");
     const [isTesting, setIsTesting] = useState(false);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -86,23 +87,32 @@ export const ApiKeyWelcomeModal: React.FC<ApiKeyWelcomeModalProps> = ({ isOpen, 
                     )}
 
                     {/* Actions */}
-                    <GlassButton
-                        onClick={handleSave}
-                        disabled={isTesting || !apiKeyInput.trim()}
-                        variant="primary"
-                        size="lg"
-                        className="w-full justify-center text-sm font-bold uppercase tracking-wide gap-2 shadow-lg shadow-primary/20"
-                    >
-                        {isTesting ? (
-                            <>
-                                <Loader2 className="w-4 h-4 animate-spin" /> Verifying...
-                            </>
-                        ) : (
-                            <>
-                                <Save className="w-4 h-4" /> Connect Neural Link
-                            </>
-                        )}
-                    </GlassButton>
+                    <div className="flex flex-col gap-3">
+                        <GlassButton
+                            onClick={handleSave}
+                            disabled={isTesting || !apiKeyInput.trim()}
+                            variant="primary"
+                            size="lg"
+                            className="w-full justify-center text-sm font-bold uppercase tracking-wide gap-2 shadow-lg shadow-primary/20"
+                        >
+                            {isTesting ? (
+                                <>
+                                    <Loader2 className="w-4 h-4 animate-spin" /> Verifying...
+                                </>
+                            ) : (
+                                <>
+                                    <Save className="w-4 h-4" /> Connect Neural Link
+                                </>
+                            )}
+                        </GlassButton>
+
+                        <button
+                            onClick={onSkip}
+                            className="text-xs font-bold uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors py-2"
+                        >
+                            Skip for now (Explore Mode)
+                        </button>
+                    </div>
                 </div>
 
                 {/* Footer / Help */}
@@ -111,9 +121,9 @@ export const ApiKeyWelcomeModal: React.FC<ApiKeyWelcomeModalProps> = ({ isOpen, 
                         href="https://aistudio.google.com/app/apikey"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 hover:border-blue-500/40 text-blue-400 font-bold text-xs uppercase tracking-wide transition-all hover:scale-105"
                     >
-                        Get a free API key here <ExternalLink className="w-3 h-3" />
+                        Get Free Gemini API Key <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                 </div>
             </div>
