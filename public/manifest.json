@@ -1,0 +1,16 @@
+{
+    "name": "swarasutra AI",
+    "short_name": "swarasutra",
+    "description": "Professional Multi-Agent AI Lyricist for Indian Cinema.",
+    "start_url": "/studio",
+    "display": "standalone",
+    "background_color": "#020617",
+    "theme_color": "#0891b2",
+    "icons": [
+        {
+            "src": "/assets/logo.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ]
+}

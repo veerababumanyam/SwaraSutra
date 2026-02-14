@@ -1,0 +1,22 @@
+# Swara Sutra - AI Indian Lyricist
+
+Swara Sutra is a professional multi-agent AI orchestration platform specialized for Indian cinema (Tollywood, Bollywood, Kollywood) and global music composition. It coordinartes specialized AI agents to generate culturally accurate, rhythmically precise, and emotionally resonant lyrics.
+
+## Core Capabilities
+- **Multi-Agent Orchestration**: Specialized agents like Bhava Vignani (Emotion), Desi DNA (Regional), and Mahakavi (Lyricist).
+- **Multimodal Inputs**: Analyze images and videos to generate contextual lyrics.
+- **Regional & Global Purity**: Deep understanding of 40+ languages including Indian (Telugu, Hindi, Tamil, etc.), Arabic, and European/Asian languages with native script enforcement.
+- **Studio Environment**: Advanced composer interface with rhythm tapping and live brainstorming.
+
+## Project Structure
+- `/`: Landing Page & Features
+- `/about`: Detailed information about the AI Agent ecosystem.
+- `/studio`: The core creative workspace.
+
+## Technical Standards
+- Built with Google Gemini API.
+- Implements WCAG 2.2 AA accessibility.
+- "Liquid Glass 2.0" design system.
+
+## For AI Agents
+AI agents can refer to this document to understand the application's purpose and architecture. Please do not attempt to automate the `/studio` route without explicit user presence, as it requires real-time orchestration and API keys.

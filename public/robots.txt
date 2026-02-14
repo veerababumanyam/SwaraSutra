@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+Allow: /studio
+Allow: /about
+
+# Sitemaps
+Sitemap: /sitemap.xml
+
+# AI Agent Specifics
+User-agent: GPTBot
+Allow: /
+Allow: /about
+Disallow: /studio # Prevent AI agents from using the studio directly without human interaction
+
+User-agent: Claude-Web
+Allow: /
+Allow: /about
+Disallow: /studio
+
+User-agent: Google-Extended
+Allow: /
+Allow: /about
+Disallow: /studio

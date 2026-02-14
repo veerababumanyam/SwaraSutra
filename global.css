@@ -1,0 +1,776 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 
+      Mac OS Tahoe & iOS 26 Liquid Glass System (Refined)
+      Powered by OKLCH for maximum vitality and depth.
+    */
+
+    /* ── Fluid Typography & Spacing (System) ── */
+    --fluid-h1: clamp(2.5rem, 5vi + 1rem, 4.5rem);
+    --fluid-h2: clamp(2rem, 4vi + 0.5rem, 3rem);
+    --fluid-h3: clamp(1.75rem, 3vi + 0.5rem, 2.5rem);
+    --fluid-body: clamp(1rem, 1.5vi + 0.25rem, 1.125rem);
+    --fluid-label: clamp(0.875rem, 1vi + 0.25rem, 1rem);
+
+    --space-xs: clamp(0.75rem, 2vi, 1rem);
+    --space-sm: clamp(1.25rem, 3vi, 1.75rem);
+    --space-md: clamp(2.5rem, 5vi, 3.5rem);
+    --space-lg: clamp(5rem, 8vi, 7rem);
+
+    /* ── Liquid Glass Tokens (Full Values) ── */
+    /* Increased Opacity to prevent blending with dashboard content (95%+ for visibility) */
+    --glass-bg-light: rgba(255, 255, 255, 0.95);
+    --glass-border-light: rgba(0, 0, 0, 0.1);
+    --glass-highlight: rgba(255, 255, 255, 0.6);
+    --glass-shadow: rgba(0, 0, 0, 0.15);
+
+    /* ── Tailwind Core Palette (OKLCH Channels) ── */
+    /* Light Mode: Modern, Clean, "Off-White" Background */
+    --background: 98.5% 0.002 240;
+    /* #FAFBFC ish */
+    --foreground: 20% 0.02 260;
+    /* Soft Black */
+
+    /* Sidebar: Clean White/Glass in Light Mode */
+    --sidebar-background: 99% 0 0;
+    --sidebar-foreground: 25% 0.02 260;
+    --sidebar-accent: 62% 0.22 260;
+
+    --card: 100% 0 0;
+    --card-foreground: 20% 0.02 260;
+
+    --popover: 100% 0 0;
+    --popover-foreground: 20% 0.02 260;
+
+    /* Brand Colors - High Vitality */
+    --primary: 62.8% 0.22 260;
+    /* Modern Blue #3B82F6 approx */
+    --primary-foreground: 99% 0 0;
+    --primary-hover: 58% 0.22 260;
+
+    --secondary: 65% 0.22 280;
+    /* Purple Accent #8B5CF6 approx */
+    --secondary-foreground: 99% 0 0;
+    --secondary-hover: 60% 0.22 280;
+
+    --accent: 65% 0.22 280;
+    /* Same as secondary for now */
+    --accent-foreground: 99% 0 0;
+    --accent-hover: 60% 0.22 280;
+
+    --muted: 96% 0.005 240;
+    --muted-foreground: 45% 0.02 260;
+    /* Darker for better contrast */
+
+    --destructive: 60% 0.24 25;
+    --destructive-foreground: 99% 0 0;
+
+    --success: 65% 0.2 145;
+    --success-foreground: 99% 0 0;
+
+    --warning: 85% 0.18 85;
+    --warning-foreground: 20% 0.04 85;
+
+    --border: 92% 0.005 240;
+    --border-strong: 85% 0.005 240;
+    --input: 96% 0.005 240;
+    --ring: 62.8% 0.22 260;
+
+    /* ── Design Tokens ── */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-2xl: 2.5rem;
+    --radius-full: 9999px;
+
+    --font-base: var(--fluid-body);
+
+    /* ── Transitions ── */
+    --transition-fast: 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-base: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-slow: 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-fluid: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .dark {
+    /* ── Dark Mode: Deep Void with Neon Accents ── */
+    --glass-bg-light: oklch(18% 0.03 260 / 60%);
+    --glass-border-light: oklch(100% 0 0 / 15%);
+    --glass-highlight: oklch(100% 0 0 / 15%);
+    --glass-shadow: oklch(0% 0 0 / 40%);
+
+    --background: 12% 0.03 260;
+    /* #1F2937 ish but richer */
+    --foreground: 98% 0.01 240;
+
+    --sidebar-background: 8% 0.04 260;
+    --sidebar-foreground: 90% 0.01 240;
+    --sidebar-accent: 65% 0.22 260;
+
+    --card: 18% 0.04 260;
+    --card-foreground: 98% 0.01 240;
+
+    --popover: 15% 0.04 260;
+    --popover-foreground: 98% 0.01 240;
+
+    --primary: 65% 0.22 260;
+    /* Glowing Blue */
+    --primary-foreground: 99% 0 0;
+    --primary-hover: 70% 0.22 260;
+
+    --secondary: 70% 0.22 280;
+    /* Glowing Purple */
+    --secondary-foreground: 99% 0 0;
+    --secondary-hover: 75% 0.22 280;
+
+    --accent: 70% 0.22 280;
+    --accent-foreground: 99% 0 0;
+    --accent-hover: 75% 0.22 280;
+
+    --muted: 20% 0.04 260;
+    --muted-foreground: 75% 0.02 240;
+
+    --destructive: 60% 0.24 25;
+    --destructive-foreground: 99% 0 0;
+
+    --success: 65% 0.2 145;
+    --success-foreground: 99% 0 0;
+
+    --warning: 85% 0.18 85;
+
+    --border: 25% 0.04 260;
+    --border-strong: 35% 0.04 260;
+    --input: 20% 0.04 260;
+    --ring: 65% 0.22 260;
+  }
+
+  /* ── Base Styles ── */
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-size: var(--font-base);
+    line-height: 1.6;
+    font-feature-settings: "rlig" 1, "calt" 1, "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ── Enhanced Scrollbar (iOS-like) ── */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--muted-foreground) / 0.3);
+    border-radius: var(--radius-full);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    transition: background var(--transition-fast);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--muted-foreground) / 0.5);
+    background-clip: padding-box;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: oklch(var(--muted-foreground) / 0.2);
+    background-clip: padding-box;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--muted-foreground) / 0.4);
+    background-clip: padding-box;
+  }
+
+  /* ── Typography System ── */
+  h1,
+  .h1 {
+    font-size: var(--fluid-h1);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  h2,
+  .h2 {
+    font-size: var(--fluid-h2);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  h3,
+  .h3 {
+    font-size: var(--fluid-h3);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+
+  h4,
+  .h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+  }
+
+  h5,
+  .h5 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  h6,
+  .h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── iOS-Quality Glassmorphism System ── */
+
+  /* ── iOS-Quality Glassmorphism System ── */
+
+  /* Base Glass - macOS Tahoe */
+  .glass {
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(32px) saturate(220%) brightness(1.1);
+    -webkit-backdrop-filter: blur(32px) saturate(220%) brightness(1.1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 8px 32px var(--glass-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-xl);
+  }
+
+  /* Thick Glass - Floating Islands & Overlays */
+  .glass-thick {
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(64px) saturate(210%);
+    -webkit-backdrop-filter: blur(64px) saturate(210%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .glass-thick {
+    background: oklch(15% 0.04 260 / 80%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Interactive Glass - Buttons & Cards */
+  .glass-interactive {
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    /* Subtle white border for "popping" look */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+      0 2px 8px var(--glass-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all var(--ease-fluid);
+    cursor: pointer;
+  }
+
+  .glass-interactive:hover {
+    transform: scale(1.02) translateY(-2px);
+    background: oklch(var(--primary) / 0.1);
+    border-color: oklch(var(--primary) / 0.3);
+    box-shadow:
+      0 12px 32px var(--glass-shadow),
+      0 0 0 2px oklch(var(--primary) / 0.1);
+  }
+
+  .glass-interactive:active {
+    transform: scale(0.98);
+    backdrop-filter: blur(40px) saturate(240%);
+    -webkit-backdrop-filter: blur(40px) saturate(240%);
+  }
+
+  .dark .glass-interactive:hover {
+    background: oklch(var(--primary) / 0.25);
+  }
+
+  /* Bordered Glass - Input Fields */
+  .glass-bordered {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    /* FIXED: No dark borders. Use translucent white/black mix */
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    /* Extremely subtle dark hint for definition */
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    /* Highlight top */
+    box-shadow:
+      0 2px 4px 0 rgba(0, 0, 0, 0.02),
+      inset 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    /* Inner shadow for depth */
+    transition: all var(--transition-base);
+  }
+
+  .glass-auto {
+    @apply glass;
+  }
+
+  .glass-auto-elevated {
+    @apply glass-thick;
+    box-shadow: 0 12px 48px var(--glass-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .glass-auto-interactive {
+    @apply glass-interactive;
+    background: oklch(var(--card) / 0.7);
+  }
+
+  .dark .glass-auto-interactive {
+    background: oklch(var(--card) / 0.4);
+  }
+
+  .dark .glass-bordered {
+    background: oklch(var(--card) / 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 2px 4px 0 rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* ── Gradient Utilities ── */
+  .gradient-brand {
+    background: linear-gradient(135deg, oklch(var(--primary)) 0%, oklch(var(--accent)) 100%);
+  }
+
+  .gradient-mesh {
+    background:
+      radial-gradient(at 27% 37%, oklch(var(--primary) / 0.3) 0px, transparent 50%),
+      radial-gradient(at 97% 21%, oklch(var(--accent) / 0.3) 0px, transparent 50%),
+      radial-gradient(at 52% 99%, oklch(var(--primary) / 0.2) 0px, transparent 50%),
+      radial-gradient(at 10% 29%, oklch(var(--accent) / 0.2) 0px, transparent 50%);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg,
+        oklch(var(--primary)) 0%,
+        oklch(var(--accent)) 100%);
+  }
+
+  /* ── Focus Visible (Accessibility) ── */
+  *:focus-visible {
+    outline: 2px solid oklch(var(--ring));
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ── Selection ── */
+  ::selection {
+    background: oklch(var(--primary) / 0.2);
+    color: oklch(var(--foreground));
+  }
+}
+
+@layer components {
+
+  /* ── Navigation & Headers ── */
+  .nav-bar {
+    @apply glass-thick sticky top-0 z-50;
+    transition: all var(--transition-base);
+  }
+
+  .nav-bar.scrolled {
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1),
+      inset 0 1px 0 0 rgb(255 255 255 / 0.15);
+  }
+
+  /* ── Container System ── */
+  .container-bordered {
+    @apply glass-bordered rounded-[var(--radius-xl)] p-6;
+  }
+
+  .container-elevated {
+    @apply glass-elevated rounded-[var(--radius-xl)] p-6;
+  }
+
+  .container-subtle {
+    @apply glass rounded-[var(--radius-lg)] p-4;
+  }
+
+  /* ── Card Components ── */
+  .card {
+    @apply glass-bordered rounded-[var(--radius-xl)] overflow-hidden;
+    transition: all var(--transition-base);
+  }
+
+  .card-interactive {
+    @apply glass-interactive rounded-[var(--radius-xl)] overflow-hidden;
+  }
+
+  .card-interactive:hover {
+    box-shadow:
+      0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1),
+      inset 0 2px 0 0 rgb(255 255 255 / 0.15),
+      0 0 0 3px oklch(var(--primary) / 0.15);
+  }
+
+  /* ── Button System ── */
+  .btn {
+    @apply inline-flex items-center justify-center font-medium transition-all;
+    @apply rounded-[var(--radius-full)] px-5 py-2.5;
+    /* Pill shape for Tahoe */
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    transition: all var(--transition-base);
+    font-size: var(--font-sm);
+    line-height: 1.5;
+  }
+
+  .btn-primary {
+    @apply btn bg-gradient-to-br from-primary to-primary-hover;
+    @apply text-primary-foreground;
+    @apply shadow-lg shadow-primary/25;
+    @apply hover:shadow-xl hover:shadow-primary/30;
+    @apply hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98];
+    @apply border border-white/20;
+  }
+
+  .btn-secondary {
+    @apply btn glass-interactive;
+    @apply text-foreground;
+    @apply hover:border-primary/30;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent;
+    @apply text-foreground;
+    @apply hover:bg-muted;
+    @apply active:bg-muted/80;
+  }
+
+  .btn-destructive {
+    @apply btn bg-gradient-to-br from-destructive to-destructive/90;
+    @apply text-destructive-foreground;
+    @apply shadow-lg shadow-destructive/25;
+    @apply hover:shadow-xl hover:shadow-destructive/30;
+    @apply hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98];
+  }
+
+  /* ── Input System ── */
+  .input {
+    @apply w-full rounded-[var(--radius-lg)] px-4 py-2.5;
+    @apply glass-bordered;
+    @apply text-foreground placeholder:text-muted-foreground;
+    @apply focus:border-primary focus:ring-2 focus:ring-primary/20;
+    @apply transition-all;
+    font-size: var(--font-sm);
+    transition: all var(--transition-base);
+  }
+
+  .input:focus {
+    box-shadow:
+      0 0 0 3px oklch(var(--primary) / 0.1),
+      0 1px 2px 0 rgb(0 0 0 / 0.05),
+      inset 0 1px 0 0 rgb(255 255 255 / 0.1);
+  }
+
+  /* ── Badge System ── */
+  .badge {
+    @apply inline-flex items-center rounded-[var(--radius-full)] px-3 py-1;
+    @apply text-xs font-medium border;
+    transition: all var(--transition-fast);
+  }
+
+  .badge-primary {
+    @apply badge bg-primary/10 text-primary border-primary/20;
+  }
+
+  .badge-secondary {
+    @apply badge bg-muted text-muted-foreground border-border;
+  }
+
+  .badge-success {
+    @apply badge bg-success/10 text-success border-success/20;
+  }
+
+  .badge-warning {
+    @apply badge bg-warning/10 text-warning border-warning/20;
+  }
+
+  .badge-destructive {
+    @apply badge bg-destructive/10 text-destructive border-destructive/20;
+  }
+
+  /* ── Chat Bubbles (iOS-Style) ── */
+  .chat-bubble-user {
+    @apply rounded-[1.5rem] rounded-tr-md px-4 py-3;
+    background: linear-gradient(135deg, oklch(var(--primary)) 0%, oklch(var(--primary-hover)) 100%);
+    color: oklch(var(--primary-foreground));
+    box-shadow:
+      0 2px 8px 0 oklch(var(--primary) / 0.25),
+      inset 0 1px 0 0 rgb(255 255 255 / 0.2);
+    border: 1px solid oklch(var(--primary) / 0.3);
+  }
+
+  .chat-bubble-ai {
+    @apply glass-bordered rounded-[1.5rem] rounded-tl-md px-4 py-3;
+    color: oklch(var(--foreground));
+  }
+
+  .chat-bubble-system {
+    @apply glass rounded-[var(--radius-lg)] px-3 py-2;
+    @apply text-sm text-muted-foreground italic;
+    border: 1px solid oklch(var(--border) / 0.5);
+  }
+
+  /* ── Sidebar Components ── */
+  .sidebar {
+    @apply glass-thick h-full;
+    position: fixed !important;
+    border-right: 1px solid oklch(var(--border) / 0.4);
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-[var(--radius-lg)];
+    @apply text-sidebar-foreground font-medium;
+    @apply transition-all cursor-pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .sidebar-item:hover {
+    @apply bg-muted/50;
+  }
+
+  .sidebar-item.active {
+    @apply bg-gradient-to-br from-primary/10 to-primary/5;
+    @apply text-sidebar-accent;
+    box-shadow: inset 0 0 0 1px oklch(var(--primary) / 0.2);
+  }
+
+  /* ── Divider ── */
+  .divider {
+    @apply h-px bg-gradient-to-r from-transparent via-border to-transparent;
+  }
+
+  /* ── Loading States ── */
+  .skeleton {
+    @apply relative overflow-hidden rounded-[var(--radius-md)];
+    background: linear-gradient(90deg,
+        oklch(var(--muted)) 0%,
+        oklch(var(--muted) / 0.8) 50%,
+        oklch(var(--muted)) 100%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 200% 0;
+    }
+
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* ── Tooltips ── */
+  .tooltip {
+    @apply glass-elevated rounded-[var(--radius-md)] px-3 py-1.5;
+    @apply text-xs font-medium text-[oklch(var(--foreground))];
+    animation: tooltip-fade-in var(--transition-fast);
+  }
+
+  @keyframes tooltip-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ── Dropdown Menu ── */
+  .dropdown-menu {
+    @apply glass-elevated rounded-[var(--radius-xl)] p-2;
+    min-width: 200px;
+    animation: dropdown-slide-in var(--transition-base);
+  }
+
+  @keyframes dropdown-slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .dropdown-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-[var(--radius-md)];
+    @apply text-sm font-medium text-[oklch(var(--foreground))];
+    @apply transition-all cursor-pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .dropdown-item:hover {
+    @apply bg-[oklch(var(--muted))];
+  }
+
+  /* ── Modal/Dialog ── */
+  .modal-overlay {
+    @apply fixed inset-0 z-50 bg-black/60;
+    backdrop-filter: blur(4px);
+    animation: modal-overlay-fade-in var(--transition-base);
+  }
+
+  @keyframes modal-overlay-fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .modal-content {
+    @apply glass-elevated rounded-[var(--radius-2xl)] p-6;
+    animation: modal-content-slide-in var(--transition-slow);
+  }
+
+  @keyframes modal-content-slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+}
+
+/* ── Animations ── */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px oklch(var(--primary) / 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px oklch(var(--primary) / 0.5);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg,
+      transparent,
+      oklch(var(--primary) / 0.1),
+      transparent);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-morph {
+  transition: border-radius 0.5s var(--ease-fluid), width 0.5s var(--ease-fluid), height 0.5s var(--ease-fluid);
+}
+
+.parallax-layer-0 {
+  transform: translateZ(0);
+}
+
+.parallax-layer-1 {
+  --tw-translate-z: 10px;
+  transform: translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z));
+  backdrop-filter: blur(32px);
+}
+
+.parallax-layer-2 {
+  --tw-translate-z: 20px;
+  transform: translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z));
+  box-shadow: 0 20px 40px -10px oklch(0 0 0 / 0.3);
+}
+
+/* ── Utility Classes ── */
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* ── Print Styles ── */
+@media print {
+
+  .glass,
+  .glass-elevated,
+  .glass-thick,
+  .glass-interactive,
+  .glass-bordered {
+    background: white !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
