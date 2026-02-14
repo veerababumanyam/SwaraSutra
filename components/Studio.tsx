@@ -6,6 +6,7 @@ import { Message, SavedSong, ViewState } from "../types";
 import { runChatAgent } from "../agents/chat";
 import { useOrchestrator } from "../hooks/useOrchestrator";
 import { useStudio } from "../contexts/StudioContext";
+import { getActiveApiKey } from "../utils";
 
 import { Header } from "./Header";
 import { SwaraSutraSidebar } from "./SwaraSutraSidebar";
@@ -26,7 +27,8 @@ const Studio = () => {
     generationSettings,
     addSavedSong,
     appearance,
-    isSidebarOpen, setIsSidebarOpen
+    isSidebarOpen, setIsSidebarOpen,
+    isCinemaMode
   } = useStudio();
 
   const location = useLocation();
@@ -72,11 +74,10 @@ const Studio = () => {
       console.error("Failed to load chat session", e);
     }
 
-    // Check for API key in env or localStorage
-    const savedKey = localStorage.getItem("swarasutra_api_key");
-    const keyExists = !!process.env.API_KEY || !!savedKey;
-    setHasApiKey(keyExists);
-    setShowWelcomeModal(!keyExists); // Show modal if no key
+    // Check for API key using centralized validation (filters placeholders)
+    const currentKey = getActiveApiKey();
+    setHasApiKey(!!currentKey);
+    setShowWelcomeModal(!currentKey); // Show modal if no valid key
   }, []);
 
   // Save chat session to local storage whenever messages change
@@ -158,10 +159,16 @@ const Studio = () => {
     if (sendInFlightRef.current) return;
     sendInFlightRef.current = true;
 
-    // Check for API key before processing
-    if (!hasApiKey) {
+    // Check for API key dynamically at send time (not stale React state)
+    const currentKey = getActiveApiKey();
+    if (!currentKey) {
       setShowWelcomeModal(true);
+      sendInFlightRef.current = false;
       return;
+    }
+    // Sync state if key was added externally (e.g., via Header panel)
+    if (!hasApiKey) {
+      setHasApiKey(true);
     }
 
     setViewState('CHAT');
@@ -249,7 +256,7 @@ const Studio = () => {
   };
 
   return (
-    <div className={`flex h-[100dvh] bg-background text-foreground transition-[padding] duration-500 ease-in-out overflow-hidden ${isSidebarOpen ? 'lg:pl-[calc(var(--sidebar-w)+2rem)]' : 'pl-0'}`} style={{ fontSize: `${appearance.fontSize}px`, '--sidebar-w': `${appearance.sidebarWidth || 340}px` } as React.CSSProperties}>
+    <div className={`flex h-[100dvh] bg-background text-foreground transition-[padding] duration-500 ease-in-out overflow-hidden safe-x ${isSidebarOpen ? 'lg:pl-[calc(var(--sidebar-w)+2rem)]' : 'pl-0'}`} style={{ fontSize: `${appearance.fontSize}px`, '--sidebar-w': `${appearance.sidebarWidth || 340}px` } as React.CSSProperties}>
 
       {/* Global Ambient Background - Moved to root to cover sidebar area */}
       <div className="fixed inset-0 parallax-layer-0 z-0 pointer-events-none">
@@ -259,20 +266,22 @@ const Studio = () => {
       <TutorialOverlay />
       <SwaraSutraSidebar onClose={() => setIsSidebarOpen(false)} agentStatus={agentStatus} onLoadProfile={() => { }} onOpenHelp={() => setIsHelpOpen(true)} onOpenSettings={() => setIsSidebarOpen(true)} onLoadSong={handleLoadSong} />
 
-      <div className="flex-1 flex flex-col min-h-0 relative z-10">
+      <div className="flex-1 flex flex-col min-h-0 relative z-10 safe-top">
 
-        {/* ─── Unified Header ─── */}
-        <Header
-          viewState={viewState}
-          setViewState={setViewState}
-          onNewChat={() => handleNewChat()}
-          onOpenLive={() => setViewState('LIVE')}
-          onOpenHelp={() => setIsHelpOpen(true)}
-          agentStatus={agentStatus}
-          hasMessages={messages.length > 0}
-        />
+        {/* ─── Unified Header (hidden in cinema mode) ─── */}
+        {!isCinemaMode && (
+          <Header
+            viewState={viewState}
+            setViewState={setViewState}
+            onNewChat={() => handleNewChat()}
+            onOpenLive={() => setViewState('LIVE')}
+            onOpenHelp={() => setIsHelpOpen(true)}
+            agentStatus={agentStatus}
+            hasMessages={messages.length > 0}
+          />
+        )}
 
-        <main className="flex-1 min-h-0 overflow-y-auto p-4 md:p-8 relative z-10 scrollbar-hide parallax-layer-1">
+        <main className="flex-1 min-h-0 overflow-y-auto p-2 sm:p-4 md:p-8 relative z-10 scrollbar-hide scroll-touch parallax-layer-1">
           <ErrorBoundary scope="Studio Workspace">
             {viewState === 'DASHBOARD' && (
               <Dashboard
@@ -299,7 +308,7 @@ const Studio = () => {
           </ErrorBoundary>
         </main>
 
-        {viewState === 'CHAT' && (
+        {viewState === 'CHAT' && !isCinemaMode && (
           <ComposerInput
             input={input}
             setInput={setInput}

@@ -90,12 +90,30 @@ if (document.readyState === 'loading') {
   startApp();
 }
 
-// Unregister any existing service workers to avoid stale cache issues
+// Register Service Worker for PWA
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then((registrations) => {
-    for (const registration of registrations) {
-      console.log('Force unregistering service worker:', registration);
-      registration.unregister();
-    }
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((registration) => {
+        console.log('%c SwaraSutra PWA %c Service Worker registered ✓', 'background: #6d28d9; color: white; font-weight: bold;', 'color: #4ade80;');
+
+        // Check for updates periodically
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          if (newWorker) {
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                // New content available — notify the user
+                console.log('%c SwaraSutra PWA %c New version available! Refreshing...', 'background: #6d28d9; color: white; font-weight: bold;', 'color: #f59e0b;');
+                newWorker.postMessage('SKIP_WAITING');
+                window.location.reload();
+              }
+            });
+          }
+        });
+      })
+      .catch((error) => {
+        console.warn('SwaraSutra: Service Worker registration failed:', error);
+      });
   });
 }

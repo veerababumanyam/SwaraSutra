@@ -249,11 +249,11 @@ export const LiveBrainstorm: React.FC<LiveBrainstormProps> = ({ onClose, languag
 
   return (
     <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center animate-in fade-in duration-500">
-      <button onClick={() => onClose()} className="absolute top-6 right-6 p-2 bg-white/10 rounded-full hover:bg-red-500/50 transition-colors text-white">
+      <button onClick={() => onClose()} className="absolute top-4 right-4 safe-top p-2.5 bg-white/10 rounded-full hover:bg-red-500/50 transition-colors text-white min-w-[44px] min-h-[44px] flex items-center justify-center z-10">
         <X className="w-6 h-6" />
       </button>
 
-      <div className="text-center space-y-2 mb-12">
+      <div className="text-center space-y-2 mb-6 sm:mb-12 px-4">
         <h2 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-cinema tracking-tighter">
           NEURAL LIVE
         </h2>
@@ -263,7 +263,7 @@ export const LiveBrainstorm: React.FC<LiveBrainstormProps> = ({ onClose, languag
       </div>
 
       {/* Visualizer Orb */}
-      <div className="relative w-64 h-64 flex items-center justify-center mb-12">
+      <div className="relative w-48 h-48 sm:w-64 sm:h-64 flex items-center justify-center mb-6 sm:mb-12">
         {/* Core */}
         <div className={`absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 blur-3xl opacity-30 transition-all duration-100`}
           style={{ transform: `scale(${1 + volumeLevel})` }}
@@ -289,7 +289,7 @@ export const LiveBrainstorm: React.FC<LiveBrainstormProps> = ({ onClose, languag
       </div>
 
       {/* Controls */}
-      <div className="flex gap-6 items-center">
+      <div className="flex gap-4 sm:gap-6 items-center">
         <GlassButton
           variant={isMuted ? "danger" : "subtle"}
           size="lg"

@@ -73,16 +73,32 @@ export const setSafeLocalStorage = (key: string, value: any) => {
 };
 
 /**
+ * Checks if a string looks like a valid Gemini API key.
+ * Real Gemini keys start with 'AIza' and are ~39 chars.
+ */
+const isValidApiKey = (key: string | null | undefined): key is string => {
+  if (!key) return false;
+  const trimmed = key.trim();
+  // Reject obvious placeholders and short/empty strings
+  if (trimmed.length < 10) return false;
+  if (trimmed.toLowerCase().includes('placeholder')) return false;
+  if (trimmed.toLowerCase() === 'your_api_key_here') return false;
+  return true;
+};
+
+/**
  * Gets the active API key. Priority:
  * 1. User-saved key in localStorage (runtime)
  * 2. Environment variable from build time (process.env.API_KEY)
+ * Only returns keys that pass basic validity checks.
  */
 export const getActiveApiKey = (): string | null => {
   try {
     const saved = localStorage.getItem("swarasutra_api_key");
-    if (saved) return saved;
+    if (isValidApiKey(saved)) return saved;
   } catch { }
-  return process.env.API_KEY || null;
+  const envKey = process.env.API_KEY || null;
+  return isValidApiKey(envKey) ? envKey : null;
 };
 
 /**

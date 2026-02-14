@@ -39,7 +39,7 @@ const ActionButton = ({ icon, label, onClick, disabled, title, active }: { icon:
     disabled={disabled}
     title={title}
     className={cn(
-      "flex flex-col items-center gap-2 p-2 rounded-xl transition-all w-20 group",
+      "flex flex-col items-center gap-2 p-2 rounded-xl transition-all w-20 shrink-0 min-w-[44px] min-h-[44px] group",
       disabled ? "opacity-40 cursor-not-allowed" : "hover:bg-slate-100 dark:hover:bg-slate-800/50"
     )}
   >
@@ -98,9 +98,9 @@ export const LyricsRenderer = ({
   const [isPlayingTTS, setIsPlayingTTS] = useState(false);
   const [isGeneratingTTS, setIsGeneratingTTS] = useState(false);
   const [ttsAudioData, setTtsAudioData] = useState<string | null>(null);
-  const [isCinemaMode, setIsCinemaMode] = useState(false);
 
-  const { appearance, setIsSidebarOpen } = useStudio();
+
+  const { appearance, setIsSidebarOpen, isCinemaMode, setIsCinemaMode } = useStudio();
   const audioContextRef = useRef<AudioContext | null>(null);
   const sourceNodeRef = useRef<AudioBufferSourceNode | null>(null);
 
@@ -177,31 +177,19 @@ export const LyricsRenderer = ({
   const toggleCinemaMode = () => {
     const newMode = !isCinemaMode;
     setIsCinemaMode(newMode);
-
-    const sidebar = document.getElementById('tutorial-sidebar');
-    const input = document.getElementById('studio-input');
-    const header = document.querySelector('.safe-top');
-
     if (newMode) {
       setIsSidebarOpen(false);
-      if (sidebar) sidebar.style.display = 'none';
-      if (input) input.parentElement!.style.display = 'none';
-      if (header) (header as HTMLElement).style.display = 'none';
-    } else {
-      if (sidebar) sidebar.style.display = '';
-      if (input) input.parentElement!.style.display = '';
-      if (header) (header as HTMLElement).style.display = '';
     }
   };
 
   return (
     <div className={cn(
-      "relative rounded-xl overflow-hidden shadow-sm my-4 w-full flex flex-col transition-all",
+      "relative rounded-xl overflow-visible shadow-sm my-4 w-full flex flex-col transition-all",
       isCinemaMode ? "fixed inset-0 z-50 bg-slate-950 m-0 rounded-none border-none" : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800"
     )}>
 
       {/* Header Toolbar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md shrink-0 gap-4 sm:gap-0">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between p-2 sm:p-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md shrink-0 gap-2 sm:gap-0">
         <div className="flex bg-slate-200/50 dark:bg-slate-900/50 p-1.5 rounded-xl gap-1">
           <TabButton
             icon={<Eye />}
@@ -228,7 +216,7 @@ export const LyricsRenderer = ({
           )}
         </div>
 
-        <div className="flex items-center gap-2 mt-2 sm:mt-0 overflow-x-auto pb-2 sm:pb-0 scrollbar-hide w-full sm:w-auto">
+        <div className="flex items-center gap-1 sm:gap-2 mt-1 sm:mt-0 overflow-x-auto pb-1 sm:pb-0 scrollbar-hide w-full sm:w-auto flex-nowrap">
           {/* Audio Waveform takes center stage if TTS exists */}
           {ttsAudioData ? (
             <div className="flex-1 px-4 min-w-[200px]">
@@ -282,7 +270,7 @@ export const LyricsRenderer = ({
 
           <button
             onClick={toggleCinemaMode}
-            className="p-3 border-2 border-slate-200 dark:border-slate-800 rounded-2xl text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all hover:scale-105 active:scale-95"
+            className="shrink-0 p-3 border-2 border-slate-200 dark:border-slate-800 rounded-2xl text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 min-w-[44px] min-h-[44px]"
             title="Cinema Mode"
           >
             {isCinemaMode ? <Minimize2 className="w-5 h-5" /> : <Maximize2 className="w-5 h-5" />}

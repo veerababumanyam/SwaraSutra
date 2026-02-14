@@ -210,7 +210,7 @@ export const LyricsViewer: React.FC<LyricsViewerProps> = ({
           if (isGuideContent) return null;
 
           return (
-            <p key={i} className="text-lg text-slate-900 dark:text-slate-100 leading-relaxed hover:text-black dark:hover:text-white transition-colors cursor-text selection:bg-primary/20 selection:text-primary pl-1">
+            <p key={i} className="text-lg text-slate-900 dark:text-slate-100 leading-relaxed hover:text-black dark:hover:text-white transition-colors cursor-text selection:bg-primary/20 selection:text-primary pl-1 break-words whitespace-pre-wrap">
               {renderStyledLine(section.text)}
             </p>
           );

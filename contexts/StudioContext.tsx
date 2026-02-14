@@ -24,6 +24,8 @@ interface StudioContextType {
   resetAllAgentModels: () => void;
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isCinemaMode: boolean;
+  setIsCinemaMode: React.Dispatch<React.SetStateAction<boolean>>;
   tutorialActive: boolean;
   setTutorialActive: (active: boolean) => void;
   tutorialStep: number;
@@ -37,6 +39,7 @@ const StudioContext = createContext<StudioContextType | undefined>(undefined);
 
 export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
+  const [isCinemaMode, setIsCinemaMode] = useState(false);
   const [tutorialActive, setTutorialActive] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
 
@@ -300,6 +303,7 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
       appearance, setAppearance,
       updateAgentModel, resetAllAgentModels,
       isSidebarOpen, setIsSidebarOpen,
+      isCinemaMode, setIsCinemaMode,
       tutorialActive, setTutorialActive,
       tutorialStep, setTutorialStep,
       setColorMode,

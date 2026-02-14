@@ -157,14 +157,14 @@ export const ComposerInput: React.FC<ComposerInputProps & {
     };
 
     return (
-      <footer className="flex-shrink-0 p-3 md:p-6 z-20 relative">
+      <footer className="flex-shrink-0 mt-auto p-2 sm:p-3 md:p-6 z-20 relative safe-bottom">
         <div className="max-w-4xl mx-auto relative space-y-3">
 
           {/* Selection Summary */}
           <SelectionSummary />
 
           {/* Media Preview Area */}
-          <div className="flex gap-2 flex-wrap items-end px-1">
+          <div className="flex gap-2 flex-wrap items-end px-1 overflow-x-auto scrollbar-hide">
             {selectedVisual && (
               <div className="p-2 glass-thick rounded-2xl shadow-lg border border-white/20 flex items-start gap-2 animate-in slide-in-from-bottom-2">
                 {selectedVisual.type === 'video' ? (
@@ -211,7 +211,7 @@ export const ComposerInput: React.FC<ComposerInputProps & {
           </div>
 
           {/* ── Input Bar ── */}
-          <div className={`composer-bar p-2 md:p-2.5 rounded-[24px] md:rounded-[32px] flex items-end gap-1.5 transition-all duration-300 shadow-xl glass-thick border border-white/20 focus-within:ring-2 focus-within:ring-primary/40 focus-within:border-primary/40 ${isRecording ? 'ring-2 ring-red-500/40 border-red-500/40 bg-red-500/5' : ''}`}>
+          <div className={`composer-bar p-1.5 sm:p-2 md:p-2.5 rounded-[24px] md:rounded-[32px] flex items-end gap-1 sm:gap-1.5 transition-all duration-300 shadow-xl glass-thick border border-white/20 focus-within:ring-2 focus-within:ring-primary/40 focus-within:border-primary/40 ${isRecording ? 'ring-2 ring-red-500/40 border-red-500/40 bg-red-500/5' : ''}`}>
 
             {/* Tool buttons row */}
             <GlassButton
@@ -220,9 +220,9 @@ export const ComposerInput: React.FC<ComposerInputProps & {
               onClick={() => fileInputRef.current?.click()}
               title="Upload image or video"
               disabled={isRecording}
-              className="rounded-full w-10 h-10 flex-shrink-0 mb-0.5 border-0 hover:bg-primary/10 hover:text-primary transition-colors"
+              className="rounded-full w-9 h-9 sm:w-10 sm:h-10 flex-shrink-0 mb-0.5 border-0 hover:bg-primary/10 hover:text-primary transition-colors min-h-[36px] min-w-[36px] sm:min-h-[40px] sm:min-w-[40px]"
             >
-              <Film className="w-5 h-5" />
+              <Film className="w-4 h-4 sm:w-5 sm:h-5" />
             </GlassButton>
             <input type="file" ref={fileInputRef} className="hidden" accept="image/*,video/*" onChange={handleVisualUpload} />
 
@@ -232,9 +232,9 @@ export const ComposerInput: React.FC<ComposerInputProps & {
               onClick={() => audioInputRef.current?.click()}
               title="Upload audio file"
               disabled={isRecording}
-              className="rounded-full w-10 h-10 flex-shrink-0 mb-0.5 border-0 hover:bg-primary/10 hover:text-primary transition-colors"
+              className="rounded-full w-9 h-9 sm:w-10 sm:h-10 flex-shrink-0 mb-0.5 border-0 hover:bg-primary/10 hover:text-primary transition-colors"
             >
-              <UploadCloud className="w-5 h-5" />
+              <UploadCloud className="w-4 h-4 sm:w-5 sm:h-5" />
             </GlassButton>
             <input type="file" ref={audioInputRef} className="hidden" accept="audio/*" onChange={handleAudioUpload} />
 
@@ -244,9 +244,9 @@ export const ComposerInput: React.FC<ComposerInputProps & {
               onClick={onOpenTapper}
               title="Tap a beat"
               disabled={isRecording}
-              className={`rounded-full w-10 h-10 flex-shrink-0 mb-0.5 border-0 transition-all ${rhythmContext ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-md shadow-amber-500/25' : 'hover:bg-primary/10 hover:text-primary'}`}
+              className={`rounded-full w-9 h-9 sm:w-10 sm:h-10 flex-shrink-0 mb-0.5 border-0 transition-all ${rhythmContext ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-md shadow-amber-500/25' : 'hover:bg-primary/10 hover:text-primary'}`}
             >
-              <Activity className="w-5 h-5" style={{ color: rhythmContext ? 'white' : undefined }} />
+              <Activity className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: rhythmContext ? 'white' : undefined }} />
             </GlassButton>
 
             {onOpenLive && (
@@ -256,9 +256,9 @@ export const ComposerInput: React.FC<ComposerInputProps & {
                 onClick={onOpenLive}
                 title="Live brainstorm"
                 disabled={isRecording}
-                className="rounded-full w-10 h-10 flex-shrink-0 mb-0.5 border-0 hover:bg-red-500/10 hover:text-red-500 transition-colors"
+                className="rounded-full w-9 h-9 sm:w-10 sm:h-10 flex-shrink-0 mb-0.5 border-0 hover:bg-red-500/10 hover:text-red-500 transition-colors"
               >
-                <Radio className="w-5 h-5" />
+                <Radio className="w-4 h-4 sm:w-5 sm:h-5" />
               </GlassButton>
             )}
 
@@ -267,9 +267,9 @@ export const ComposerInput: React.FC<ComposerInputProps & {
               size="icon"
               onClick={isRecording ? stopRecording : startRecording}
               title={isRecording ? "Stop recording" : "Record voice"}
-              className={`rounded-full w-10 h-10 flex-shrink-0 mb-0.5 border-0 transition-all ${!isRecording && 'hover:bg-primary/10 hover:text-primary'}`}
+              className={`rounded-full w-9 h-9 sm:w-10 sm:h-10 flex-shrink-0 mb-0.5 border-0 transition-all ${!isRecording && 'hover:bg-primary/10 hover:text-primary'}`}
             >
-              {isRecording ? <StopCircle className="w-5 h-5 text-white animate-pulse" /> : <Mic2 className="w-5 h-5" />}
+              {isRecording ? <StopCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white animate-pulse" /> : <Mic2 className="w-4 h-4 sm:w-5 sm:h-5" />}
             </GlassButton>
 
             {/* Text area / Recording indicator */}

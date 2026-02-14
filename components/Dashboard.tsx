@@ -25,10 +25,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNewChat, onOpenLive, onL
    ];
 
    return (
-      <div className="max-w-6xl mx-auto px-6 py-8 space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="max-w-6xl mx-auto px-3 sm:px-6 py-6 sm:py-8 space-y-8 sm:space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
 
          {/* ─── Hero Section ─── */}
-         <div className="relative overflow-hidden rounded-[var(--radius-2xl)] glass-thick border border-white/20 p-6 md:p-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 group">
+         <div className="relative overflow-hidden rounded-[var(--radius-2xl)] glass-thick border border-white/20 p-4 sm:p-6 md:p-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 md:gap-8 group">
             {/* Ambient Background Glow */}
             <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-primary/20 blur-[100px] rounded-full pointer-events-none group-hover:bg-primary/30 transition-colors duration-1000" />
             <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-accent/20 blur-[80px] rounded-full pointer-events-none group-hover:bg-accent/30 transition-colors duration-1000" />

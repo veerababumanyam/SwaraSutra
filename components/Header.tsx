@@ -216,10 +216,10 @@ export const Header: React.FC<HeaderProps> = ({
   const statusLabel = agentStatus.active ? "Orchestrating" : "Idle";
 
   return (
-    <header className="header-bar flex-shrink-0 relative z-40 w-full px-4 pt-4 sticky top-0" role="banner">
-      <div className="h-16 flex items-center justify-between px-5 gap-4 glass-thick rounded-full parallax-layer-2 shadow-2xl backdrop-blur-3xl saturate-150 border border-white/20 dark:border-white/10">
+    <header className="header-bar flex-shrink-0 relative z-40 w-full px-2 sm:px-4 pt-2 sm:pt-4 sticky top-0" role="banner">
+      <div className="h-14 sm:h-16 flex items-center justify-between px-3 sm:px-5 gap-2 sm:gap-4 glass-thick rounded-full parallax-layer-2 shadow-2xl backdrop-blur-3xl saturate-150 border border-white/20 dark:border-white/10">
         {/* ─── LEFT: Sidebar Toggle + Brand ─── */}
-        <div className="flex items-center gap-3 md:gap-4 min-w-0">
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 min-w-0">
           {/* Sidebar / Menu Toggle */}
           <GlassIconButton
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -282,7 +282,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* ─── RIGHT: Status + Actions ─── */}
-        <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 flex-shrink-0">
           {/* Agent Status Indicator (visible on lg+) */}
           <div
             className="hidden lg:flex items-center gap-2 px-3 py-2 rounded-full glass-bordered bg-slate-50/50 dark:bg-slate-900/50 text-[10px] font-black uppercase tracking-widest text-muted-foreground"

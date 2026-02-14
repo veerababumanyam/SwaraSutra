@@ -1,16 +1,79 @@
 {
-    "name": "swarasutra AI",
-    "short_name": "swarasutra",
-    "description": "Professional Multi-Agent AI Lyricist for Indian Cinema.",
-    "start_url": "/studio",
+    "name": "SwaraSutra — AI Song Composer",
+    "short_name": "SwaraSutra",
+    "description": "AI-powered multilingual song composition studio with specialized agents for lyrics, emotion, and cultural authenticity.",
+    "id": "/",
+    "start_url": "/",
+    "scope": "/",
     "display": "standalone",
-    "background_color": "#020617",
-    "theme_color": "#0891b2",
+    "display_override": [
+        "window-controls-overlay",
+        "standalone",
+        "minimal-ui"
+    ],
+    "orientation": "any",
+    "background_color": "#0a0a0f",
+    "theme_color": "#6d28d9",
+    "prefer_related_applications": false,
+    "categories": [
+        "music",
+        "entertainment",
+        "productivity",
+        "utilities"
+    ],
     "icons": [
         {
-            "src": "/assets/logo.svg",
-            "sizes": "any",
-            "type": "image/svg+xml"
+            "src": "/assets/pwa-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/assets/pwa-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/assets/pwa-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
         }
-    ]
+    ],
+    "screenshots": [
+        {
+            "src": "/assets/og-preview.png",
+            "sizes": "1200x630",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "SwaraSutra AI Composition Studio"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "New Composition",
+            "short_name": "Compose",
+            "description": "Start a new AI-powered song composition",
+            "url": "/?action=compose",
+            "icons": [
+                {
+                    "src": "/assets/pwa-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ],
+    "share_target": {
+        "action": "/?share",
+        "method": "GET",
+        "params": {
+            "title": "title",
+            "text": "text",
+            "url": "url"
+        }
+    },
+    "launch_handler": {
+        "client_mode": "navigate-existing"
+    }
 }

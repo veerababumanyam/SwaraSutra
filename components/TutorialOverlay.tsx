@@ -124,15 +124,44 @@ export const TutorialOverlay: React.FC = () => {
     }
 
     const padding = 20;
+    const tooltipWidth = Math.min(320, window.innerWidth * 0.85);
+    const maxLeft = window.innerWidth - tooltipWidth - 12;
+    const minLeft = 12;
+
     switch (currentStep.position) {
-      case 'right':
-        return { top: coords.top, left: coords.left + coords.width + padding };
+      case 'right': {
+        const idealLeft = coords.left + coords.width + padding;
+        // On mobile, if tooltip would go off-screen, position below instead
+        if (idealLeft + tooltipWidth > window.innerWidth) {
+          return {
+            top: coords.top + coords.height + padding,
+            left: Math.max(minLeft, Math.min(maxLeft, coords.left + coords.width / 2 - tooltipWidth / 2))
+          };
+        }
+        return { top: coords.top, left: idealLeft };
+      }
       case 'top':
-        return { top: coords.top - padding, left: coords.left + coords.width / 2, transform: 'translate(-50%, -100%)' };
+        return {
+          top: coords.top - padding,
+          left: Math.max(minLeft, Math.min(maxLeft, coords.left + coords.width / 2 - tooltipWidth / 2)),
+          transform: 'translateY(-100%)'
+        };
       case 'bottom':
-        return { top: coords.top + coords.height + padding, left: coords.left + coords.width / 2, transform: 'translateX(-50%)' };
-      case 'left':
-        return { top: coords.top, left: coords.left - padding, transform: 'translateX(-100%)' };
+        return {
+          top: coords.top + coords.height + padding,
+          left: Math.max(minLeft, Math.min(maxLeft, coords.left + coords.width / 2 - tooltipWidth / 2))
+        };
+      case 'left': {
+        const idealLeft = coords.left - padding;
+        // On mobile, if tooltip would go off-screen, position below instead
+        if (idealLeft - tooltipWidth < 0) {
+          return {
+            top: coords.top + coords.height + padding,
+            left: Math.max(minLeft, Math.min(maxLeft, coords.left + coords.width / 2 - tooltipWidth / 2))
+          };
+        }
+        return { top: coords.top, left: idealLeft, transform: 'translateX(-100%)' };
+      }
       default:
         return { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' };
     }
@@ -165,7 +194,7 @@ export const TutorialOverlay: React.FC = () => {
 
       {/* Tooltip Card */}
       <div
-        className="absolute w-80 glass-thick border border-border shadow-2xl rounded-2xl p-6 pointer-events-auto transition-all duration-500 animate-in zoom-in-95 fade-in"
+        className="absolute w-[85vw] sm:w-80 glass-thick border border-border shadow-2xl rounded-2xl p-4 sm:p-6 pointer-events-auto transition-all duration-500 animate-in zoom-in-95 fade-in"
         style={getTooltipStyles()}
       >
         <div className="flex items-center gap-3 mb-4">

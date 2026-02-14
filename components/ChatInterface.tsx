@@ -39,7 +39,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, agentSta
   }, [messages, agentStatus]);
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6 pb-6 pt-6 px-4 sm:px-6">
+    <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6 pb-6 sm:pb-6 pt-2 sm:pt-6 px-1 sm:px-4 md:px-6">
       {messages.map((msg) => {
         const isUser = msg.role === "user";
         const isSystem = msg.senderAgent === "ORCHESTRATOR";
@@ -48,12 +48,12 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, agentSta
         return (
           <div
             key={msg.id}
-            className={`flex gap-4 ${isUser ? "flex-row-reverse" : "flex-row"} animate-in fade-in slide-in-from-bottom-2 duration-500 ease-out`}
+            className={`flex gap-2 sm:gap-4 ${isUser ? "flex-row-reverse" : "flex-row"} animate-in fade-in slide-in-from-bottom-2 duration-500 ease-out`}
           >
             {/* ── Avatar ── */}
             <div className="flex-shrink-0 pt-1">
               <div
-                className={`w-10 h-10 md:w-11 md:h-11 rounded-2xl flex items-center justify-center transition-all ${isUser
+                className={`w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-2xl flex items-center justify-center transition-all flex-shrink-0 ${isUser
                   ? "bg-gradient-to-br from-primary to-accent text-primary-foreground shadow-lg shadow-primary/25"
                   : "glass-bordered bg-white/50 dark:bg-slate-900/50"
                   }`}
@@ -63,7 +63,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, agentSta
             </div>
 
             {/* ── Message column ── */}
-            <div className={`flex flex-col max-w-[85%] md:max-w-[75%] min-w-0 ${isUser ? "items-end" : "items-start"}`}>
+            <div className={`flex flex-col max-w-[95%] sm:max-w-[85%] md:max-w-[75%] min-w-0 ${isUser ? "items-end" : "items-start"}`}>
 
               {/* Sender / timestamp */}
               <div className={`flex items-center gap-2 mb-1.5 ${isUser ? "flex-row-reverse" : ""}`}>
@@ -77,7 +77,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, agentSta
 
               {/* Bubble */}
               <div
-                className={`text-sm leading-relaxed whitespace-pre-wrap break-words px-5 py-3.5 shadow-sm ${isUser
+                className={`text-sm leading-relaxed whitespace-pre-wrap break-words overflow-hidden px-3 sm:px-5 py-2.5 sm:py-3.5 shadow-sm [overflow-wrap:anywhere] ${isUser
                   ? "chat-bubble-user rounded-[20px] rounded-tr-sm"
                   : isSystem
                     ? "chat-bubble-system"

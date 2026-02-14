@@ -246,7 +246,7 @@ export const LyricsEditor: React.FC<LyricsEditorProps> = ({
   return (
     <div className="h-full flex flex-col relative" id="editor-container">
       {/* Editor Toolbar */}
-      <div className="flex items-center justify-between p-3 border-b border-white/10 bg-black/20">
+      <div className="flex items-center justify-between p-3 border-b border-white/10 bg-black/20 overflow-x-auto no-scrollbar gap-4">
         <div className="flex items-center gap-2">
           <div className="relative">
             <GlassButton
@@ -303,7 +303,7 @@ export const LyricsEditor: React.FC<LyricsEditorProps> = ({
           variant="subtle"
           size="sm"
           onClick={() => copyToClipboard(lines.map(l => l.text).join('\n'))}
-          className="gap-2 text-xs font-bold uppercase tracking-wider px-3"
+          className="gap-2 text-xs font-bold uppercase tracking-wider px-3 shrink-0"
         >
           {copyStatus === 'copied' ? <CheckCircle2 className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
           {copyStatus === 'copied' ? 'Copied' : 'Copy'}
