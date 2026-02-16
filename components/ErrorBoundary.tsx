@@ -15,7 +15,7 @@ interface ErrorBoundaryState {
 }
 
 /**
- * swarasutra - Error Boundary
+ * LayaVani - Error Boundary
  * Catch rendering errors in child components.
  */
 export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -180,7 +180,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
           </div>
 
           <p className="mt-12 text-[10px] text-muted-foreground uppercase font-bold tracking-widest">
-            swarasutra-OS v1.0-STABLE
+            LayaVani-OS v1.0-STABLE
           </p>
         </div>
       );

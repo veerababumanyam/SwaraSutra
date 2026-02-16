@@ -72,7 +72,7 @@ export const LandingPage = () => {
             >
                 <div className="flex items-center gap-3">
                     <span className={`font-cinema font-bold text-xl tracking-tight ${textPrimary}`}>
-                        swarasutra AI
+                        LayaVani AI
                     </span>
                 </div>
                 <div className="flex items-center gap-4">
@@ -97,7 +97,7 @@ export const LandingPage = () => {
                     </h1>
 
                     <p className="text-xl text-muted-foreground leading-relaxed">
-                        swarasutra is a specialized multi-agent AI environment designed for the unique demands of Indian Cinema. From Tollywood's poetic depth to Bollywood's rhythmic energy, we compose lyrics that resonate.
+                        LayaVani is a specialized multi-agent AI environment designed for the unique demands of Indian Cinema. From Tollywood's poetic depth to Bollywood's rhythmic energy, we compose lyrics that resonate.
                     </p>
 
                     <div className="flex flex-wrap justify-center gap-4 pt-4">
@@ -146,7 +146,7 @@ export const LandingPage = () => {
 
                 {/* TRUST/SEO SECTION */}
                 <section className="text-center space-y-12">
-                    <h2 className="text-3xl font-bold font-cinema">Why leading creators choose swarasutra</h2>
+                    <h2 className="text-3xl font-bold font-cinema">Why leading creators choose LayaVani</h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 grayscale opacity-70">
                         <div className="p-4 border rounded-xl flex items-center justify-center font-bold text-2xl tracking-widest italic">TOLLYWOOD</div>
                         <div className="p-4 border rounded-xl flex items-center justify-center font-bold text-2xl tracking-widest italic">BOLLYWOOD</div>
@@ -176,7 +176,7 @@ export const LandingPage = () => {
                     <button onClick={() => navigate("/architect")} className="text-sm font-semibold text-muted-foreground hover:text-cyan-600">System Architecture</button>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                    © 2026 swarasutra AI. Built for the future of Indian Cinema.
+                    © 2026 LayaVani AI. Built for the future of Indian Cinema.
                 </p>
             </footer>
         </div>

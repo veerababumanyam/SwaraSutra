@@ -183,7 +183,7 @@ export const AboutPage = () => {
             <ArrowLeft className="w-5 h-5" />
           </GlassButton>
           <span className={`font-cinema font-bold text-xl tracking-tight hidden sm:block ${textPrimary}`}>
-            swarasutra AI
+            LayaVani AI
           </span>
         </div>
         <div className="flex items-center gap-4">
@@ -234,7 +234,7 @@ export const AboutPage = () => {
           </h1>
 
           <p className={`max-w-2xl mx-auto text-lg ${textSecondary} leading-relaxed`}>
-            swarasutra isn't a chatbot. It is a coordinated swarm of specialized
+            LayaVani isn't a chatbot. It is a coordinated swarm of specialized
             AI agents working in harmony to compose culturally rich,
             production-ready cinematic lyrics.
           </p>
@@ -403,7 +403,7 @@ export const AboutPage = () => {
             <FeatureItem
               icon={Globe}
               title="Native Script"
-              desc="swarasutra writes in pure Telugu, Hindi, Tamil, etc. No transliteration errors. It understands 'Prasa' and 'Yati'."
+              desc="LayaVani writes in pure Telugu, Hindi, Tamil, etc. No transliteration errors. It understands 'Prasa' and 'Yati'."
             />
             <FeatureItem
               icon={Bot}

@@ -1,7 +1,7 @@
-// SwaraSutra Service Worker v1.0
-const CACHE_NAME = 'swarasutra-v1';
-const STATIC_CACHE = 'swarasutra-static-v1';
-const DYNAMIC_CACHE = 'swarasutra-dynamic-v1';
+// LayaVani Service Worker v1.0
+const CACHE_NAME = 'LayaVani-v1';
+const STATIC_CACHE = 'LayaVani-static-v1';
+const DYNAMIC_CACHE = 'LayaVani-dynamic-v1';
 
 // Files to pre-cache on install
 const PRECACHE_URLS = [

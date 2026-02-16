@@ -206,7 +206,7 @@ Your job has TWO phases that you execute in ONE response:
     } catch (error: any) {
         // If the primary model failed and we have a different fallback model, try it
         if (fallbackModel && fallbackModel !== model) {
-            console.warn(`swarasutra: Primary model (${model}) failed, falling back to ${fallbackModel}:`, error?.message?.slice(0, 80));
+            console.warn(`LayaVani: Primary model (${model}) failed, falling back to ${fallbackModel}:`, error?.message?.slice(0, 80));
             try {
                 const response = await retryWithBackoff(async () => await ai.models.generateContent({
                     model: fallbackModel,

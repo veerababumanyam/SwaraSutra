@@ -2,7 +2,7 @@
   "requestFramePermissions": [
     "microphone"
   ],
-  "name": "swarasutra",
+  "name": "LayaVani",
   "description": "AI Agent-based Indian Cinema Lyric Writer. Professional Multi-Agent Orchestrator for Global Music.",
   "theme_color": "#0891b2"
 }

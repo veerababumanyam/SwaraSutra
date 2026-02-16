@@ -41,7 +41,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNewChat, onOpenLive, onL
 
                <div className="space-y-4">
                   <h1 className="text-3xl md:text-6xl lg:text-7xl font-black font-cinema tracking-tighter text-foreground drop-shadow-md leading-tight">
-                     Compose your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-text-shimmer bg-[length:200%_auto]">Masterpiece.</span>
+                     Compose your Lyrics<span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-text-shimmer bg-[length:200%_auto]">Masterpiece.</span>
                   </h1>
                   <p className="text-base md:text-xl text-muted-foreground font-medium leading-relaxed max-w-lg">
                      {APP_TAGLINE}. Architect production-ready lyrics with a specialized multi-agent team.

@@ -75,7 +75,7 @@ export const LiveBrainstorm: React.FC<LiveBrainstormProps> = ({ onClose, languag
   const nextStartTimeRef = useRef<number>(0);
   const sourcesRef = useRef<Set<AudioBufferSourceNode>>(new Set());
 
-  const systemInstruction = `You are swarasutra, a professional lyricist assistant. 
+  const systemInstruction = `You are LayaVani, a professional lyricist assistant. 
   You are brainstorming with a music director. 
   Context: ${languageContext}.
   Keep responses concise, creative, and rhythmic. 
@@ -182,7 +182,7 @@ export const LiveBrainstorm: React.FC<LiveBrainstormProps> = ({ onClose, languag
               setTranscriptionHistory(prev => {
                 const newEntries = [];
                 if (currentInputTranscription) newEntries.push(`User: ${currentInputTranscription}`);
-                if (currentOutputTranscription) newEntries.push(`swarasutra: ${currentOutputTranscription}`);
+                if (currentOutputTranscription) newEntries.push(`LayaVani: ${currentOutputTranscription}`);
                 return [...prev, ...newEntries];
               });
               setCurrentInputTranscription('');
@@ -240,7 +240,7 @@ export const LiveBrainstorm: React.FC<LiveBrainstormProps> = ({ onClose, languag
     const fullTranscript = [
       ...transcriptionHistory,
       currentInputTranscription ? `User: ${currentInputTranscription}` : '',
-      currentOutputTranscription ? `swarasutra: ${currentOutputTranscription}` : ''
+      currentOutputTranscription ? `LayaVani: ${currentOutputTranscription}` : ''
     ].filter(Boolean).join('\n');
 
     disconnect();

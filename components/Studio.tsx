@@ -9,7 +9,7 @@ import { useStudio } from "../contexts/StudioContext";
 import { getActiveApiKey } from "../utils";
 
 import { Header } from "./Header";
-import { SwaraSutraSidebar } from "./SwaraSutraSidebar";
+import { LayaVaniSidebar } from "./LayaVaniSidebar";
 import { HelpModal } from "./HelpModal";
 import { ApiKeyWelcomeModal } from "./ApiKeyWelcomeModal";
 import { MoodBackground } from "./MoodBackground";
@@ -57,7 +57,7 @@ const Studio = () => {
   // Load chat session from local storage on mount
   useEffect(() => {
     try {
-      const savedSession = localStorage.getItem("swarasutra_chat_session");
+      const savedSession = localStorage.getItem("LayaVani_chat_session");
       if (savedSession) {
         const parsed = JSON.parse(savedSession);
         // Re-hydrate Date objects
@@ -83,7 +83,7 @@ const Studio = () => {
   // Save chat session to local storage whenever messages change
   useEffect(() => {
     if (messages.length > 0) {
-      localStorage.setItem("swarasutra_chat_session", JSON.stringify(messages));
+      localStorage.setItem("LayaVani_chat_session", JSON.stringify(messages));
     }
   }, [messages]);
 
@@ -126,7 +126,7 @@ const Studio = () => {
     setRhythmContext(null);
     setInput("");
     setIsLoading(false);
-    localStorage.removeItem("swarasutra_chat_session");
+    localStorage.removeItem("LayaVani_chat_session");
     setViewState('CHAT');
 
     if (initialPrompt) {
@@ -264,7 +264,7 @@ const Studio = () => {
       </div>
 
       <TutorialOverlay />
-      <SwaraSutraSidebar onClose={() => setIsSidebarOpen(false)} agentStatus={agentStatus} onLoadProfile={() => { }} onOpenHelp={() => setIsHelpOpen(true)} onOpenSettings={() => setIsSidebarOpen(true)} onLoadSong={handleLoadSong} />
+      <LayaVaniSidebar onClose={() => setIsSidebarOpen(false)} agentStatus={agentStatus} onLoadProfile={() => { }} onOpenHelp={() => setIsHelpOpen(true)} onOpenSettings={() => setIsSidebarOpen(true)} onLoadSong={handleLoadSong} />
 
       <div className="flex-1 flex flex-col min-h-0 relative z-10 safe-top">
 

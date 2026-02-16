@@ -1,7 +1,7 @@
 
 import { AppTheme, AgentType } from "./types";
 
-export const APP_NAME = "swarasutra";
+export const APP_NAME = "LayaVani";
 export const APP_TAGLINE = "AI Agent-based Indian Cinema Lyric Writer";
 
 export const BILLING_DOCS_URL = "https://ai.google.dev/gemini-api/docs/billing";
@@ -185,8 +185,8 @@ export const DIALECT_OPTIONS = [
 
 export const DEFAULT_THEMES: AppTheme[] = [
   {
-    id: "swarasutra-default",
-    name: "swarasutra Dark",
+    id: "LayaVani-default",
+    name: "LayaVani Dark",
     colors: {
       bgMain: "#0f172a", // Slate 950
       bgSidebar: "#1e293b", // Slate 800

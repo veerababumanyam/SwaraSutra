@@ -1,11 +1,11 @@
 
 
-# 🎵 swarasutra
+# 🎵 LayaVani
 ### The Resonant Thread of Indian Cinematic Lyrics
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg) ![Tech](https://img.shields.io/badge/Built%20with-Google%20Gemini-orange) ![Stack](https://img.shields.io/badge/React-TypeScript-blue)
 
-**swarasutra AI Studio** is a **Multi-Agent Orchestrator** designed to compose high-fidelity lyrics for Indian Cinema (Tollywood, Bollywood), Global Pop, and Fusion genres.
+**LayaVani AI Studio** is a **Multi-Agent Orchestrator** designed to compose high-fidelity lyrics for Indian Cinema (Tollywood, Bollywood), Global Pop, and Fusion genres.
 
 It manages a team of specialized AI agents (Emotion, Research, Lyricist, Compliance, Review) to turn a simple thought into a production-ready lyrical composition with perfect meter, rhymes, and cultural depth.
 
@@ -14,7 +14,7 @@ It manages a team of specialized AI agents (Emotion, Research, Lyricist, Complia
 ## ✨ Key Features
 
 ### 🧠 The "Sutra" Context Engine
-Unlike generic AI, swarasutra understands deep culture. It features a **Knowledge Base** of specific scenarios:
+Unlike generic AI, LayaVani understands deep culture. It features a **Knowledge Base** of specific scenarios:
 *   **💍 Wedding Rituals:** *Jeelakarra Bellam*, *Talambralu*, *Appagintalu*.
 *   **🎬 Cinematic Tropes:** *Hero Intro (Mass)*, *Villain Theme*, *Item Song*, *Love Failure (Soup Song)*.
 *   **🕉️ Life Milestones:** *Sasti Purthi* (60th Birthday), *Naming Ceremony*.

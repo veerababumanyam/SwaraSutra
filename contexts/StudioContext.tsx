@@ -24,8 +24,6 @@ interface StudioContextType {
   resetAllAgentModels: () => void;
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isCinemaMode: boolean;
-  setIsCinemaMode: React.Dispatch<React.SetStateAction<boolean>>;
   tutorialActive: boolean;
   setTutorialActive: (active: boolean) => void;
   tutorialStep: number;
@@ -39,13 +37,12 @@ const StudioContext = createContext<StudioContextType | undefined>(undefined);
 
 export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
-  const [isCinemaMode, setIsCinemaMode] = useState(false);
   const [tutorialActive, setTutorialActive] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
 
   const [languageSettings, setLanguageSettings] = useState<LanguageProfile>(() => {
     const defaults = { primary: "Telugu", secondary: "English", tertiary: "Hindi" };
-    return getSafeLocalStorage("swarasutra_languages", defaults);
+    return getSafeLocalStorage("LayaVani_languages", defaults);
   });
 
   const [generationSettings, setGenerationSettings] = useState<GenerationSettings>(() => {
@@ -56,16 +53,16 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
       customSingerStyle: "", structure: DEFAULT_SONG_STRUCTURE, customStructure: "",
       dialect: AUTO_OPTION, customDialect: ""
     };
-    return getSafeLocalStorage("swarasutra_gen_settings", defaults);
+    return getSafeLocalStorage("LayaVani_gen_settings", defaults);
   });
 
   const [savedSongs, setSavedSongs] = useState<SavedSong[]>(() => {
-    const data = getSafeLocalStorage("swarasutra_saved_songs", []);
+    const data = getSafeLocalStorage("LayaVani_saved_songs", []);
     return Array.isArray(data) ? data : [];
   });
 
   const [projects, setProjects] = useState<Project[]>(() => {
-    const data = getSafeLocalStorage("swarasutra_projects", []);
+    const data = getSafeLocalStorage("LayaVani_projects", []);
     return Array.isArray(data) ? data : [];
   });
 
@@ -73,7 +70,7 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
     const defaults: AppearanceSettings = {
       fontSize: 16,
       sidebarWidth: 340,
-      themeId: "swarasutra-default",
+      themeId: "LayaVani-default",
       colorMode: "system",
       llmModel: MODEL_DEFAULT,
       agentModels: DEFAULT_AGENT_MODELS,
@@ -81,7 +78,7 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
       showAdvanced: false,
       openSections: {}
     };
-    const saved = getSafeLocalStorage("swarasutra_appearance", defaults);
+    const saved = getSafeLocalStorage("LayaVani_appearance", defaults);
 
     return {
       ...defaults,
@@ -90,11 +87,11 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
     };
   });
 
-  useEffect(() => { setSafeLocalStorage("swarasutra_languages", languageSettings); }, [languageSettings]);
-  useEffect(() => { setSafeLocalStorage("swarasutra_gen_settings", generationSettings); }, [generationSettings]);
-  useEffect(() => { setSafeLocalStorage("swarasutra_saved_songs", savedSongs); }, [savedSongs]);
-  useEffect(() => { setSafeLocalStorage("swarasutra_projects", projects); }, [projects]);
-  useEffect(() => { setSafeLocalStorage("swarasutra_appearance", appearance); }, [appearance]);
+  useEffect(() => { setSafeLocalStorage("LayaVani_languages", languageSettings); }, [languageSettings]);
+  useEffect(() => { setSafeLocalStorage("LayaVani_gen_settings", generationSettings); }, [generationSettings]);
+  useEffect(() => { setSafeLocalStorage("LayaVani_saved_songs", savedSongs); }, [savedSongs]);
+  useEffect(() => { setSafeLocalStorage("LayaVani_projects", projects); }, [projects]);
+  useEffect(() => { setSafeLocalStorage("LayaVani_appearance", appearance); }, [appearance]);
 
   // Handle Light/Dark/System Mode
   useEffect(() => {
@@ -166,12 +163,12 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
         props.forEach(p => root.style.removeProperty(p));
       }
     } catch (e) {
-      console.warn("swarasutra: Theme application error:", e);
+      console.warn("LayaVani: Theme application error:", e);
     }
   }, [appearance.themeId, appearance.customThemes, appearance.colorMode]);
 
   useEffect(() => {
-    const completed = localStorage.getItem("swarasutra_tutorial_completed");
+    const completed = localStorage.getItem("LayaVani_tutorial_completed");
     if (!completed) {
       setTutorialActive(true);
     }
@@ -258,7 +255,7 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
     setAppearance({
       fontSize: 16,
       sidebarWidth: 340,
-      themeId: "swarasutra-default",
+      themeId: "LayaVani-default",
       colorMode: "system",
       llmModel: MODEL_DEFAULT,
       agentModels: DEFAULT_AGENT_MODELS,
@@ -269,14 +266,14 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
   }, []);
 
   const clearAllData = useCallback(() => {
-    localStorage.removeItem("swarasutra_languages");
-    localStorage.removeItem("swarasutra_gen_settings");
-    localStorage.removeItem("swarasutra_saved_songs");
-    localStorage.removeItem("swarasutra_projects");
-    localStorage.removeItem("swarasutra_appearance");
-    localStorage.removeItem("swarasutra_profiles");
-    localStorage.removeItem("swarasutra_tutorial_completed");
-    localStorage.removeItem("swarasutra_api_key");
+    localStorage.removeItem("LayaVani_languages");
+    localStorage.removeItem("LayaVani_gen_settings");
+    localStorage.removeItem("LayaVani_saved_songs");
+    localStorage.removeItem("LayaVani_projects");
+    localStorage.removeItem("LayaVani_appearance");
+    localStorage.removeItem("LayaVani_profiles");
+    localStorage.removeItem("LayaVani_tutorial_completed");
+    localStorage.removeItem("LayaVani_api_key");
 
     // Reset states to defaults
     setLanguageSettings({ primary: "Telugu", secondary: "English", tertiary: "Hindi" });
@@ -303,7 +300,6 @@ export const StudioProvider = ({ children }: PropsWithChildren<{}>) => {
       appearance, setAppearance,
       updateAgentModel, resetAllAgentModels,
       isSidebarOpen, setIsSidebarOpen,
-      isCinemaMode, setIsCinemaMode,
       tutorialActive, setTutorialActive,
       tutorialStep, setTutorialStep,
       setColorMode,

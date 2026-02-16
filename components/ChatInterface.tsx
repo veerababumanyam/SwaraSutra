@@ -27,8 +27,8 @@ const agentMeta: Record<string, { icon: React.ReactNode; label: string; color: s
 };
 
 const getAgent = (agent?: AgentType) => {
-  if (!agent) return { icon: <Clapperboard className="w-4 h-4" />, label: "swarasutra", color: "text-slate-500 dark:text-slate-400" };
-  return agentMeta[agent] ?? { icon: <Clapperboard className="w-4 h-4" />, label: "swarasutra", color: "text-slate-500 dark:text-slate-400" };
+  if (!agent) return { icon: <Clapperboard className="w-4 h-4" />, label: "LayaVani", color: "text-slate-500 dark:text-slate-400" };
+  return agentMeta[agent] ?? { icon: <Clapperboard className="w-4 h-4" />, label: "LayaVani", color: "text-slate-500 dark:text-slate-400" };
 };
 
 export const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, agentStatus, onSaveSong }) => {

@@ -97,7 +97,7 @@ const SKILL_CLUSTERS: SkillCluster[] = [
     {
         category: 'AI Platforms',
         icon: Workflow,
-        skills: ['Microsoft Copilot Studio', 'Agent 365', 'swarasutra', 'Databricks Mosaic AI', 'SAP Jules', 'LangChain', 'CrewAI', 'PydanticAI']
+        skills: ['Microsoft Copilot Studio', 'Agent 365', 'LayaVani', 'Databricks Mosaic AI', 'SAP Jules', 'LangChain', 'CrewAI', 'PydanticAI']
     },
     {
         category: 'Data & Governance',
@@ -207,7 +207,7 @@ export const ArchitectProfile = () => {
                                 <Activity className="w-4 h-4" />
                                 Connect Neural Link
                             </GlassButton>
-                            <GlassButton variant="ghost" className="gap-2" onClick={() => window.open('mailto:veerababumanyam@gmail.com')}>
+                            <GlassButton variant="ghost" className="gap-2" onClick={() => window.open('mailto:manyamgermany@gmail.com')}>
                                 <Mail className="w-4 h-4" />
                                 Transmission
                             </GlassButton>

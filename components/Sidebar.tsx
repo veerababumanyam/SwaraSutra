@@ -1,1 +1,1 @@
-/* Deprecated: Replaced by swarasutraSidebar.tsx */
+/* Deprecated: Replaced by LayaVaniSidebar.tsx */

@@ -7,7 +7,7 @@ projects=(
   "desicart-d7339"
   "desiconnect-ff411"
   "lingualens-ivxaw"
-  "swarasutra-95e35"
+  "LayaVani-95e35"
   "polyquery"
   "pulsarchat-4f548"
   "pulsarchat-b3e27"

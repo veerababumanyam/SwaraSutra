@@ -1,6 +1,6 @@
 {
-    "name": "SwaraSutra — AI Song Composer",
-    "short_name": "SwaraSutra",
+    "name": "LayaVani — AI Song Composer",
+    "short_name": "LayaVani",
     "description": "AI-powered multilingual song composition studio with specialized agents for lyrics, emotion, and cultural authenticity.",
     "id": "/",
     "start_url": "/",
@@ -47,7 +47,7 @@
             "sizes": "1200x630",
             "type": "image/png",
             "form_factor": "wide",
-            "label": "SwaraSutra AI Composition Studio"
+            "label": "LayaVani AI Composition Studio"
         }
     ],
     "shortcuts": [

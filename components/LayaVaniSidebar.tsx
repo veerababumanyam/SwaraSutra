@@ -243,7 +243,7 @@ interface SidebarProps {
   onLoadSong: (song: SavedSong) => void;
 }
 
-export const SwaraSutraSidebar: React.FC<SidebarProps> = ({ onClose, agentStatus, onLoadProfile, onOpenHelp, onLoadSong }) => {
+export const LayaVaniSidebar: React.FC<SidebarProps> = ({ onClose, agentStatus, onLoadProfile, onOpenHelp, onLoadSong }) => {
   const navigate = useNavigate();
   const {
     languageSettings, setLanguageSettings, updateLanguageSetting,
@@ -304,7 +304,7 @@ export const SwaraSutraSidebar: React.FC<SidebarProps> = ({ onClose, agentStatus
   // Load API key on mount
   useEffect(() => {
     const existingKey = getActiveApiKey();
-    console.log("swarasutra Sidebar: Key check on mount:", existingKey ? "Present" : "Missing");
+    console.log("LayaVani Sidebar: Key check on mount:", existingKey ? "Present" : "Missing");
     if (existingKey) {
       setHasApiKey(true);
       setSavedApiKeyMasked(existingKey.slice(0, 6) + "••••••••" + existingKey.slice(-4));
@@ -319,7 +319,7 @@ export const SwaraSutraSidebar: React.FC<SidebarProps> = ({ onClose, agentStatus
     };
     const updated = [newProfile, ...savedProfiles];
     setSavedProfiles(updated);
-    localStorage.setItem("swarasutra_profiles", JSON.stringify(updated));
+    localStorage.setItem("LayaVani_profiles", JSON.stringify(updated));
     setProfileName("");
   };
 
@@ -426,7 +426,7 @@ export const SwaraSutraSidebar: React.FC<SidebarProps> = ({ onClose, agentStatus
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `swarasutra-profiles-${Date.now()}.json`;
+    a.download = `LayaVani-profiles-${Date.now()}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -448,11 +448,11 @@ export const SwaraSutraSidebar: React.FC<SidebarProps> = ({ onClose, agentStatus
         const newProfiles = profiles.filter(p => !existingIds.has(p.id));
         const merged = [...newProfiles, ...savedProfiles];
         setSavedProfiles(merged);
-        localStorage.setItem("swarasutra_profiles", JSON.stringify(merged));
+        localStorage.setItem("LayaVani_profiles", JSON.stringify(merged));
         setAutoConfigured(true);
         setTimeout(() => setAutoConfigured(false), 2000);
       } catch (err) {
-        alert("Invalid profile file. Please use a file exported from swarasutra.");
+        alert("Invalid profile file. Please use a file exported from LayaVani.");
       }
     };
     input.click();
@@ -753,7 +753,7 @@ export const SwaraSutraSidebar: React.FC<SidebarProps> = ({ onClose, agentStatus
                       <GlassIconButton onClick={() => {
                         const updated = savedProfiles.filter(prof => prof.id !== p.id);
                         setSavedProfiles(updated);
-                        localStorage.setItem("swarasutra_profiles", JSON.stringify(updated));
+                        localStorage.setItem("LayaVani_profiles", JSON.stringify(updated));
                       }} size="sm" variant="ghost" className="h-6 w-6 hover:text-destructive" aria-label="Delete Profile"><Trash2 className="w-3.5 h-3.5 text-foreground" /></GlassIconButton>
                     </div>
                   </div>
@@ -895,7 +895,7 @@ export const SwaraSutraSidebar: React.FC<SidebarProps> = ({ onClose, agentStatus
               <SidebarSection title="Data & Privacy" icon={<ShieldCheck />} isOpen={getSectionOpen('data-privacy', false)} onToggle={(v) => setSectionOpen('data-privacy', v)}>
                 <div className="space-y-3">
                   <p className="text-sm text-slate-900 dark:text-white font-bold leading-relaxed">
-                    swarasutra operates locally. Your lyrics and preferences are stored in your browser. To comply with data privacy standards, you can wipe all local data here.
+                    LayaVani operates locally. Your lyrics and preferences are stored in your browser. To comply with data privacy standards, you can wipe all local data here.
                   </p>
                   <GlassButton
                     variant="danger"

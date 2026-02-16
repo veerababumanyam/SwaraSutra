@@ -171,7 +171,7 @@ export const HelpModal = ({ isOpen, onClose }: HelpModalProps) => {
                 <div className="relative glass-solid border-primary/20 p-6 rounded-2xl text-center max-w-md shadow-xl">
                   <h3 className="font-bold text-lg mb-2 text-foreground">From Lyrics to Audio</h3>
                   <p className="text-sm text-muted-foreground">
-                    swarasutra generates the <em>Blueprint</em>. Suno/Udio generates the <em>Audio</em>.
+                    LayaVani generates the <em>Blueprint</em>. Suno/Udio generates the <em>Audio</em>.
                   </p>
                 </div>
               </div>
@@ -183,7 +183,7 @@ export const HelpModal = ({ isOpen, onClose }: HelpModalProps) => {
                 <div>
                   <h4 className="font-bold text-sm text-foreground">Generate & Switch View</h4>
                   <p className="text-sm text-muted-foreground mt-1">
-                    Once swarasutra generates lyrics, click the <strong>"Export"</strong> button in the top toolbar of the lyrics card. This strips away metadata and formats tags perfectly (e.g., <code className="bg-white/10 px-1 py-0.5 rounded text-xs">[Verse]</code> instead of "Verse 1:").
+                    Once LayaVani generates lyrics, click the <strong>"Export"</strong> button in the top toolbar of the lyrics card. This strips away metadata and formats tags perfectly (e.g., <code className="bg-white/10 px-1 py-0.5 rounded text-xs">[Verse]</code> instead of "Verse 1:").
                   </p>
                 </div>
               </div>
@@ -213,7 +213,7 @@ export const HelpModal = ({ isOpen, onClose }: HelpModalProps) => {
                 <div>
                   <h4 className="font-bold text-sm text-foreground">Style Prompts</h4>
                   <p className="text-sm text-muted-foreground mt-1">
-                    In the "Style of Music" box in Suno, use the metadata swarasutra provided (e.g., <em>"Tollywood Mass Beat, Fast Tempo, Male Vocals, Dappu Drums"</em>).
+                    In the "Style of Music" box in Suno, use the metadata LayaVani provided (e.g., <em>"Tollywood Mass Beat, Fast Tempo, Male Vocals, Dappu Drums"</em>).
                   </p>
                 </div>
               </div>

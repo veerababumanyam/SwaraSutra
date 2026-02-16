@@ -13,7 +13,7 @@ interface Step {
 
 const STEPS: Step[] = [
   {
-    title: "Welcome to swarasutra",
+    title: "Welcome to LayaVani",
     content: "Welcome to the world's first Multi-Agent Lyric Studio for Indian Cinema. We don't just write words; we weave resonant cinematic threads. Ready for a quick tour?",
     targetId: "studio-welcome-center",
     position: "bottom",
@@ -35,7 +35,7 @@ const STEPS: Step[] = [
   },
   {
     title: "Language & Script Mix",
-    content: "Configure your primary and secondary languages. swarasutra writes in TRUE Native Script (Telugu, Hindi, etc.)—never messy transliteration.",
+    content: "Configure your primary and secondary languages. LayaVani writes in TRUE Native Script (Telugu, Hindi, etc.)—never messy transliteration.",
     targetId: "tutorial-language-mix",
     position: "right",
     icon: <Languages className="w-6 h-6 text-primary" />
@@ -115,7 +115,7 @@ export const TutorialOverlay: React.FC = () => {
 
   const handleComplete = () => {
     setTutorialActive(false);
-    localStorage.setItem("swarasutra_tutorial_completed", "true");
+    localStorage.setItem("LayaVani_tutorial_completed", "true");
   };
 
   const getTooltipStyles = () => {
